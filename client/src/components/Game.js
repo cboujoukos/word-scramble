@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchWordList } from '../actions/gameActions';
 import Letter from './Letter';
 import Timer from './Timer';
 
@@ -12,6 +14,15 @@ class Game extends Component{
       usedLetters: []
     }
   }
+
+  componentDidMount() {
+    this.props.onFetchWords();
+  }
+
+  handleOnStart = (event) => {
+
+  }
+
   render(){
     return(
       <div className="game-board">
@@ -33,4 +44,10 @@ class Game extends Component{
     )
   }
 }
-export default Game
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onFetchWords: () => dispatch(fetchWordList())
+  }
+}
+export default connect(null, mapDispatchToProps)(Game)
