@@ -5,6 +5,8 @@ export default(state={
   switch (action.type) {
     case 'LOADING':
       return Object.assign({}, state, {loading:true});
+    case 'FETCH_WORD_LIST':
+      return Object.assign({}, state, {loading:false, words: action.payload});
     default:
       return state;
   }
