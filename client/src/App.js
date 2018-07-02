@@ -6,12 +6,17 @@ import './App.css';
 class App extends Component {
 
   // TESTING CONNECTION TO API
-  // componentDidMount() {
-  //   window.fetch('api/words')
-  //     .then(rsp => rsp.json())
-  //     .then(json=> console.log(json))
-  //     .catch(error=> console.log(error))
-  // }
+  componentDidMount() {
+    window.fetch('api/words')
+      .then(rsp => rsp.json())
+      .then(json=> console.log(json))
+      .catch(error=> console.log(error));
+    window.fetch('api/words/6')
+      .then(rsp => rsp.json())
+      .then(json=> console.log(json))
+      .catch(error=> console.log(error))
+  }
+
 
   render() {
     return (
