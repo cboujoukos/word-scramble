@@ -27,21 +27,23 @@ class Game extends Component{
   //   return false
   // }
 
-  handleOnStart = () => {
+  handleOnStart = (event) => {
+    event.preventDefault();
     // this.props.onFetchRandomWord('easy');
-    this.setState({status: 'playing'}, () => {debugger});
-    // this.setState({ status: 'playing' }, () => {
-    //   this.intervalId = setInterval(() => {
-    //     this.setState((prevState) => {
-    //       const newTimeRemaining = prevState.timeRemaining - 1;
-    //       if (newTimeRemaining === 0) {
-    //         clearInterval(this.intervalId);
-    //         return { gameStatus: 'completed', timeRemaining: 0 };
-    //       }
-    //       return { timeRemaining: newTimeRemaining };
-    //     });
-    //   }, 1000);
-    // });
+    // this.setState({status: 'playing'}, () => console.log(this.state.status));
+    // alert('wtf is happening?')
+    this.setState({ status: 'playing' }, () => {
+      this.intervalId = setInterval(() => {
+        this.setState((prevState) => {
+          const newTimeRemaining = prevState.timeRemaining - 1;
+          if (newTimeRemaining === 0) {
+            clearInterval(this.intervalId);
+            return { gameStatus: 'completed', timeRemaining: 0 };
+          }
+          return { timeRemaining: newTimeRemaining };
+        });
+      }, 1000);
+    });
     // console.log(this.props.gameStatus);
   }
 
@@ -53,7 +55,7 @@ class Game extends Component{
     let button;
 
     if (this.state.status === 'new') {
-      button = <button onClick={this.handleOnStart}>Start</button>
+      button = <button onClick={(event) => this.handleOnStart(event)}>Start</button>
     } else if (this.state.status === 'playing') {
       button = <button>Submit</button>
     } else {
