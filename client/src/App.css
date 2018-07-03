@@ -35,7 +35,10 @@
   box-shadow: 2px 2px 2px 2px #ccc;
   background-color: bisque;
   padding: 14px 10px 0;
-  margin: 10px
+  margin: 10px;
+  font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+	font-size: 18px;
+	font-weight: 500;
 }
 
 .answer {
