@@ -20,3 +20,15 @@ export function fetchRandomWord(diff){
       .then(word => dispatch({type: 'FETCH_WORD', payload: word}))
   }
 }
+
+export function startGame(){
+  return (dispatch) => {
+    dispatch({type: 'START_GAME'});
+  }
+}
+
+export function endGame(){
+  return (dispatch) => {
+    dispatch({type: 'END_GAME'});
+  }
+}
