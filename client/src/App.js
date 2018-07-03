@@ -7,11 +7,11 @@ class App extends Component {
 
   // TESTING CONNECTION TO API
   componentDidMount() {
-    window.fetch('api/words')
+    window.fetch('api/words?difficulty=medium')
       .then(rsp => rsp.json())
       .then(json=> console.log(json))
       .catch(error=> console.log(error));
-    window.fetch('api/words/6')
+    window.fetch('api/words/10')
       .then(rsp => rsp.json())
       .then(json=> console.log(json))
       .catch(error=> console.log(error))
