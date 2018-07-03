@@ -2,14 +2,15 @@ class WordsController < ApplicationController
   def index
     if params[:difficulty]
       word = Word.random_from(params[:difficulty])
+      word_json = {id: word.id, name: word.name, difficulty: word.difficulty, scramble: word.name.split('').shuffle.join()}
     else
       words = Word.all
     end
     render json: {
       status: 'SUCCESS',
       message: 'Loaded data',
-      data: word || words,
-      scramble: word.name.split('').shuffle.join() || undefined
+      data: word_json || words,
+      # scramble: word.name.split('').shuffle.join() || undefined
       }, status: :ok
     # render json: words.to_json
   end

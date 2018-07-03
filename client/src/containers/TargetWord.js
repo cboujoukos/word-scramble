@@ -1,27 +1,18 @@
 import React from 'react';
+import Letter from '../components/Letter';
 
-// WHERE SHOULD I MOVE THIS LOGIC???
-function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
+const TargetWord = ({targetWord, scramble}) => {
+  const renderScramble = scramble.split('').map((letter, i) => {
+    return <Letter key={i} value={letter} />
+  })
 
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
-
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-
-  return array;
-}
-
-const TargetWord = ({targetWord}) => {
-  const scrambledWord = targetWord.
+  return (
+    <div>
+      {renderScramble}
+    </div>
+  )
 
 
 }
+
+export default TargetWord

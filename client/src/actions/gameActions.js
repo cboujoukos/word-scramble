@@ -17,6 +17,6 @@ export function fetchRandomWord(diff){
     return fetch(`api/words?difficulty=${difficulty}`)
       .then(rsp => rsp.json())
       .then(json => json.data)
-      .then(word => dispatch({type: 'FETCH_WORD', payload: word.name}))
+      .then(word => dispatch({type: 'FETCH_WORD', payload: word}))
   }
 }
