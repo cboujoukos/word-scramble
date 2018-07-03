@@ -2,7 +2,7 @@ class WordsController < ApplicationController
   def index
     if params[:difficulty]
       word = Word.random_from(params[:difficulty])
-      word_json = {id: word.id, name: word.name, difficulty: word.difficulty, scramble: word.name.split('').shuffle.join()}
+      word_json = {id: word.id, name: word.name.upcase, difficulty: word.difficulty, scramble: word.name.split('').shuffle.join().upcase}
     else
       words = Word.all
     end
