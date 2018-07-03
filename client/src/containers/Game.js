@@ -41,6 +41,11 @@ class Game extends Component{
     });
   }
 
+  handleOnSubmit = (event) => {
+    event.preventDefault();
+    console.log(event.target)
+  }
+
 
   render(){
     let button;
@@ -48,7 +53,7 @@ class Game extends Component{
     if (this.state.status === 'new') {
       button = <button onClick={(event) => this.handleOnStart(event)}>Start</button>
     } else if (this.state.status === 'playing') {
-      button = <button>Submit</button>
+      button = <button onClick={(event) => this.handleOnSubmit(event)}>Submit</button>
     } else {
       button = <button>New Game</button>
     }
