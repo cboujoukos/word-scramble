@@ -21,14 +21,14 @@ export function fetchRandomWord(diff){
   }
 }
 
-export function startGame(){
-  return (dispatch) => {
-    dispatch({type: 'START_GAME'});
-  }
-}
-
-export function endGame(){
-  return (dispatch) => {
-    dispatch({type: 'END_GAME'});
-  }
-}
+// export function startGame(){
+//   return (dispatch) => {
+//     dispatch({type: 'START_GAME'});
+//   }
+// }
+//
+// export function endGame(){
+//   return (dispatch) => {
+//     dispatch({type: 'END_GAME'});
+//   }
+// }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchWordList, fetchRandomWord } from '../actions/gameActions';
+import { fetchWordList, fetchRandomWord } from '../actions/gameActions'; //, startGame, endGame
 import TargetWord from './TargetWord';
 import Timer from '../components/Timer';
 
@@ -16,16 +16,25 @@ class Game extends Component{
   }
 
   componentDidMount() {
-    this.props.onFetchWords();
+    // this.props.onFetchWords();
+    this.props.onFetchRandomWord('easy');
   }
 
+  // shouldComponentUpdate(nextProps,nextState) {
+  //   // const diffWord = this.props.targetWord !== nextProps.targetWord
+  //   const diffStatus = this.state.status !== nextState.status
+  //   return diffStatus
+  // }
+
   handleOnStart = (event) => {
-    this.props.onFetchRandomWord('easy');
-    this.setState({
-      status: 'playing'
-    });
-    console.log(this.state.status);
-    debugger
+    this.setState({status: 'playing'})
+    // this.props.onFetchRandomWord('easy');
+    // console.log(this.props.gameStatus);
+    console.log(this.state.status)
+  }
+
+  startGame = () => {
+
   }
 
   render(){
@@ -34,9 +43,9 @@ class Game extends Component{
     if (this.state.status === 'new') {
       button = <button onClick={event => this.handleOnStart(event)}>Start</button>
     } else if (this.state.status === 'playing') {
-      button = <button onClick={event => this.handleOnStart(event)}>Submit</button>
+      button = <button>Submit</button>
     } else {
-      button = <button onClick={event => this.handleOnStart(event)}>New Game</button>
+      button = <button>New Game</button>
     }
 
     return(
@@ -47,7 +56,7 @@ class Game extends Component{
           <Letter letter="J" />
           <Letter letter="O" />
           <Letter letter="R" />*/}
-          <TargetWord targetWord={this.props.targetWord} scramble={this.props.scramble} />
+          <TargetWord targetWord={this.props.targetWord} scramble={this.state.status === 'new' ? 'SCRAMBLE' : this.props.scramble} />
         </div>
         <form>
           <input type="text" className="answer" />
@@ -66,14 +75,17 @@ class Game extends Component{
 const mapStateToProps = state => {
   return {
     targetWord: state.game.targetWord,
-    scramble: state.game.scramble
+    scramble: state.game.scramble,
+    // gameStatus: state.game.gameStatus
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     onFetchWords: () => dispatch(fetchWordList()),
-    onFetchRandomWord: (diff) => dispatch(fetchRandomWord(diff))
+    onFetchRandomWord: (diff) => dispatch(fetchRandomWord(diff)),
+    // onStartGame: () => dispatch(startGame()),
+    // onEndGame: () => dispatch(endGame())
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Game)
