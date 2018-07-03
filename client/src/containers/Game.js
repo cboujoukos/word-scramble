@@ -11,6 +11,7 @@ class Game extends Component{
     this.state = {
       status: 'new', //new, playing, completed
       timeRemaining: this.props.initialSeconds,
+      countdownTimer: 3,
       usedLetters: []
     }
   }
@@ -20,28 +21,39 @@ class Game extends Component{
     this.props.onFetchRandomWord('easy');
   }
 
-  // shouldComponentUpdate(nextProps,nextState) {
+  // shouldComponentUpdate(nextProps, nextState) {
   //   // const diffWord = this.props.targetWord !== nextProps.targetWord
-  //   const diffStatus = this.state.status !== nextState.status
-  //   return diffStatus
+  //   // const diffStatus = this.state.status !== nextState.status
+  //   return false
   // }
 
-  handleOnStart = (event) => {
-    this.setState({status: 'playing'})
+  handleOnStart = () => {
     // this.props.onFetchRandomWord('easy');
+    this.setState({status: 'playing'}, () => {debugger});
+    // this.setState({ status: 'playing' }, () => {
+    //   this.intervalId = setInterval(() => {
+    //     this.setState((prevState) => {
+    //       const newTimeRemaining = prevState.timeRemaining - 1;
+    //       if (newTimeRemaining === 0) {
+    //         clearInterval(this.intervalId);
+    //         return { gameStatus: 'completed', timeRemaining: 0 };
+    //       }
+    //       return { timeRemaining: newTimeRemaining };
+    //     });
+    //   }, 1000);
+    // });
     // console.log(this.props.gameStatus);
-    console.log(this.state.status)
   }
 
-  startGame = () => {
-
-  }
+  // startGame = () => {
+  //
+  // }
 
   render(){
     let button;
 
     if (this.state.status === 'new') {
-      button = <button onClick={event => this.handleOnStart(event)}>Start</button>
+      button = <button onClick={this.handleOnStart}>Start</button>
     } else if (this.state.status === 'playing') {
       button = <button>Submit</button>
     } else {
@@ -51,12 +63,7 @@ class Game extends Component{
     return(
       <div className="game-board">
         <div className="target-word">
-          {/*<Letter letter="M" />
-          <Letter letter="A" />
-          <Letter letter="J" />
-          <Letter letter="O" />
-          <Letter letter="R" />*/}
-          <TargetWord targetWord={this.props.targetWord} scramble={this.state.status === 'new' ? 'SCRAMBLE' : this.props.scramble} />
+          <TargetWord targetWord={this.props.targetWord} scramble={this.state.status === 'new' ? 'SCRAMBLE' : this.props.scramble} /> {/*gameStatus={this.state.status}*/}
         </div>
         <form>
           <input type="text" className="answer" />
