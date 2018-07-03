@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchWordList } from '../actions/gameActions';
+import { fetchWordList, fetchRandomWord } from '../actions/gameActions';
 import Letter from './Letter';
 import Timer from './Timer';
 
@@ -20,10 +20,12 @@ class Game extends Component{
   }
 
   handleOnStart = (event) => {
-
+    this.props.onFetchRandomWord('easy')
   }
 
   render(){
+
+
     return(
       <div className="game-board">
         <div className="target-word">
@@ -37,7 +39,7 @@ class Game extends Component{
         <div className="game-footer">
           <Timer timeRemaining={this.state.timeRemaining} />
           <div className="start-button">
-            <button>Start</button>
+            <button onClick={event => this.handleOnStart(event)}>Start</button>
           </div>
         </div>
       </div>
@@ -45,9 +47,16 @@ class Game extends Component{
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    onFetchWords: () => dispatch(fetchWordList())
+    targetWord: state.game.targetWord
   }
 }
-export default connect(null, mapDispatchToProps)(Game)
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onFetchWords: () => dispatch(fetchWordList()),
+    onFetchRandomWord: (diff) => dispatch(fetchRandomWord(diff))
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Game)

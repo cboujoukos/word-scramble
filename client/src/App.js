@@ -7,7 +7,7 @@ class App extends Component {
 
   // TESTING CONNECTION TO API
   componentDidMount() {
-    window.fetch('api/words?difficulty=medium')
+    window.fetch('api/words?difficulty=very_hard')
       .then(rsp => rsp.json())
       .then(json=> console.log(json))
       .catch(error=> console.log(error));
@@ -25,7 +25,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <Game initialSeconds={15}/>
+        <Game initialSeconds={30}/>
       </div>
     );
   }
