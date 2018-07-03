@@ -17,15 +17,10 @@ class Game extends Component{
   }
 
   componentDidMount() {
-    // this.props.onFetchWords();
     this.props.onFetchRandomWord('easy');
   }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   // const diffWord = this.props.targetWord !== nextProps.targetWord
-  //   // const diffStatus = this.state.status !== nextState.status
-  //   return false
-  // }
+
 
   handleOnStart = (event) => {
     event.preventDefault();
@@ -44,12 +39,8 @@ class Game extends Component{
         });
       }, 1000);
     });
-    // console.log(this.props.gameStatus);
   }
 
-  // startGame = () => {
-  //
-  // }
 
   render(){
     let button;
