@@ -28,30 +28,48 @@ class Game extends Component{
     // this.props.onFetchRandomWord('easy');
     // this.setState({status: 'playing'}, () => console.log(this.state.status));
     // alert('wtf is happening?')
-    // this.setState((prevState,props) => {
-    //   return {gameRound: prevState.gameRound + 1}
-    // })
     this.setState((prevState) => {
       return { status: 'playing', gameRound: prevState.gameRound + 1 }
-    }, () => {
-      this.intervalId = setInterval(() => {
-        this.setState((prevState) => {
-          const newTimeRemaining = prevState.timeRemaining - 1;
-          if (newTimeRemaining === 0) {
-            clearInterval(this.intervalId);
-            return { status: 'completed', timeRemaining: 0 };
-          }
-          return { timeRemaining: newTimeRemaining };
-        });
-      }, 1000);
-    });
+    }, this.startInterval());
   }
 
   handleOnSubmit = (event) => {
     event.preventDefault();
     console.log(document.getElementById('answer').value)
-    this.setState({status: 'completed'});
+    // this.setState({status: 'completed'});
     clearInterval(this.intervalId)
+    this.validateAnswer(document.getElementById('answer').value)
+    document.getElementById('answer').value = ''
+  }
+
+  startInterval = () => {
+    this.intervalId = setInterval(() => {
+      this.setState((prevState) => {
+        const newTimeRemaining = prevState.timeRemaining - 1;
+        if (newTimeRemaining === 0) {
+          clearInterval(this.intervalId);
+          return { status: 'completed', timeRemaining: 0 };
+        }
+        return { timeRemaining: newTimeRemaining };
+      });
+    }, 1000);
+  }
+
+  validateAnswer = (answer) => {
+    if (answer.toUpperCase() === this.props.targetWord){
+      if (this.state.gameRound < 5) {
+        this.props.onFetchRandomWord('easy')
+      } else if ((this.state.gameRound > 4) && this.state.gameRound < 10) {
+        this.props.onFetchRandomWord('medium')
+      } else if ((this.state.gameRound > 9) && this.state.gameRound < 15) {
+        this.props.onFetchRandomWord('hard')
+      } else {
+        this.props.onFetchRandomWord('very_hard')
+      };
+      this.setState((prevState) => {
+        return { gameRound: prevState.gameRound + 1, timeRemaining: this.props.initialSeconds }
+      }, this.startInterval());
+    }
   }
 
 
