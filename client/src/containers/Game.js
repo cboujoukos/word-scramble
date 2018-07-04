@@ -38,8 +38,8 @@ class Game extends Component{
     console.log(document.getElementById('answer').value)
     // this.setState({status: 'completed'});
     clearInterval(this.intervalId)
-    // this.validateAnswer(document.getElementById('answer').value)
-    this.validAnswer(document.getElementById('answer').value)
+    this.validateAnswer(document.getElementById('answer').value)
+    // this.validAnswer(document.getElementById('answer').value)
     document.getElementById('answer').value = ''
   }
 
@@ -63,12 +63,18 @@ class Game extends Component{
     if (answer.toUpperCase() === this.props.targetWord) {
       return true
     } else {
-      this.props.onValidateWord(answer)
+      // this.props.onValidateWord(answer)
+      return false
     }
   }
 
+  restartGame = () => {
+    clearInterval(this.intervalId);
+    this.setState({ status: 'completed', timeRemaining: 0 });
+  }
+
   validateAnswer = (answer) => {
-    if (answer.toUpperCase() === this.props.targetWord){
+    if (this.validAnswer(answer)){
       if (this.state.gameRound < 5) {
         this.props.onFetchRandomWord('easy')
       } else if ((this.state.gameRound > 4) && this.state.gameRound < 10) {
@@ -81,6 +87,9 @@ class Game extends Component{
       this.setState((prevState) => {
         return { gameRound: prevState.gameRound + 1, timeRemaining: this.props.initialSeconds }
       }, this.startInterval());
+    } else {
+      alert('you lose.')
+      this.restartGame()
     }
   }
 
