@@ -55,6 +55,17 @@ class Game extends Component{
     }, 1000);
   }
 
+  validAnswer = (answer) => {
+    // check if answer matches target word
+    // Check that the letters entered match the letters in target word
+    // if yes, dispatch call to OED api to check for presence of answer
+    if (answer.toUpperCase() === this.props.targetWord) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   validateAnswer = (answer) => {
     if (answer.toUpperCase() === this.props.targetWord){
       if (this.state.gameRound < 5) {
