@@ -1,5 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
+const OedApiUrl = 'https://od-api.oxforddictionaries.com/api/v1'
+
 export function fetchWordList(){
   return (dispatch) => {
     dispatch({type: 'LOADING'});
@@ -18,6 +20,22 @@ export function fetchRandomWord(diff){
       .then(rsp => rsp.json())
       .then(json => json.data)
       .then(word => dispatch({type: 'FETCH_WORD', payload: word}))
+  }
+}
+
+export function validateWord(answer){
+  const word = answer
+  return (dispatch) => {
+    dispatch({type: 'LOADING'});
+    return fetch(`${OedApiUrl}/inflections/en/${word}`, {
+      mode: "cors",
+      headers: {
+        "Accept": "application/json",
+        "app_id": `${process.env.REACT_APP_ID}`,
+        "app_key": `${process.env.REACT_APP_KEY}`
+      }
+    })
+    .then(rsp => {debugger})
   }
 }
 

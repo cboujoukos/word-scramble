@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchWordList, fetchRandomWord } from '../actions/gameActions'; //, startGame, endGame
+import { fetchWordList, fetchRandomWord, validateWord } from '../actions/gameActions'; //, startGame, endGame
 import TargetWord from './TargetWord';
 import Timer from '../components/Timer';
 
@@ -38,7 +38,8 @@ class Game extends Component{
     console.log(document.getElementById('answer').value)
     // this.setState({status: 'completed'});
     clearInterval(this.intervalId)
-    this.validateAnswer(document.getElementById('answer').value)
+    // this.validateAnswer(document.getElementById('answer').value)
+    this.validAnswer(document.getElementById('answer').value)
     document.getElementById('answer').value = ''
   }
 
@@ -62,7 +63,7 @@ class Game extends Component{
     if (answer.toUpperCase() === this.props.targetWord) {
       return true
     } else {
-      return false
+      this.props.onValidateWord(answer)
     }
   }
 
@@ -126,6 +127,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onFetchWords: () => dispatch(fetchWordList()),
     onFetchRandomWord: (diff) => dispatch(fetchRandomWord(diff)),
+    onValidateWord: (word) => dispatch(validateWord(word))
     // onStartGame: () => dispatch(startGame()),
     // onEndGame: () => dispatch(endGame())
   }
