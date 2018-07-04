@@ -12,7 +12,8 @@ class Game extends Component{
       status: 'new', //new, playing, completed
       timeRemaining: this.props.initialSeconds,
       countdownTimer: 3,
-      usedLetters: []
+      usedLetters: [],
+      gameRound:0
     }
   }
 
@@ -27,13 +28,18 @@ class Game extends Component{
     // this.props.onFetchRandomWord('easy');
     // this.setState({status: 'playing'}, () => console.log(this.state.status));
     // alert('wtf is happening?')
-    this.setState({ status: 'playing' }, () => {
+    // this.setState((prevState,props) => {
+    //   return {gameRound: prevState.gameRound + 1}
+    // })
+    this.setState((prevState) => {
+      return { status: 'playing', gameRound: prevState.gameRound + 1 }
+    }, () => {
       this.intervalId = setInterval(() => {
         this.setState((prevState) => {
           const newTimeRemaining = prevState.timeRemaining - 1;
           if (newTimeRemaining === 0) {
             clearInterval(this.intervalId);
-            return { gameStatus: 'completed', timeRemaining: 0 };
+            return { status: 'completed', timeRemaining: 0 };
           }
           return { timeRemaining: newTimeRemaining };
         });
@@ -43,7 +49,9 @@ class Game extends Component{
 
   handleOnSubmit = (event) => {
     event.preventDefault();
-    console.log(event.target)
+    console.log(document.getElementById('answer').value)
+    this.setState({status: 'completed'});
+    clearInterval(this.intervalId)
   }
 
 
@@ -64,7 +72,7 @@ class Game extends Component{
           <TargetWord targetWord={this.props.targetWord} scramble={this.state.status === 'new' ? 'SCRAMBLE' : this.props.scramble} /> {/*gameStatus={this.state.status}*/}
         </div>
         <form>
-          <input type="text" className="answer" />
+          <input id="answer" type="text" className="answer" />
           <div className="game-footer">
             <Timer timeRemaining={this.state.timeRemaining} />
             <div className="start-button">

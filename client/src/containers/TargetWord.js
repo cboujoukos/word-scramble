@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import Letter from '../components/Letter';
 
 class TargetWord extends Component {
@@ -26,9 +26,9 @@ class TargetWord extends Component {
         return <Letter key={i} value={letter} />
       })
     }
-    const renderDefault = "SCRAMBLE".split('').map((letter, i) => {
-      return <Letter key={i} value={letter} />
-    })
+    // const renderDefault = "SCRAMBLE".split('').map((letter, i) => {
+    //   return <Letter key={i} value={letter} />
+    // })
 
     return (
       <div>
