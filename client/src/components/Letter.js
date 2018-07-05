@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
-class Letter extends Component {
-  render() {
-    return(
-      <div className="letter-tile">
-        {this.props.value}
-      </div>
-    )
-  }
+const Letter = ({value}) => {
+  return(
+    <div className="letter-tile">
+      {value}
+    </div>
+  )
 }
 
 
