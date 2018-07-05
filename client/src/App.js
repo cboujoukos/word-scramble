@@ -25,7 +25,7 @@ class App extends Component {
         <Game initialSeconds={30} />
       )
     }
-    
+
     return (
       <Router>
         <div className="App">
@@ -33,8 +33,9 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <h1 className="App-title">Welcome to React</h1>
           </header>
-          <Route exact path="/" render={() => <h1>Wlecome to the home page</h1>} />
+          <Route exact path="/" render={() => <h1>Welcome to the home page</h1>} />
           <Route exact path="/play" component={GamePage} />
+          <Route exact path="/scores" render={() => <h1>High Scores</h1>} />
           {/*<Game initialSeconds={30}/>*/}
         </div>
       </Router>
