@@ -42,14 +42,23 @@
 }
 
 .answer {
-  width:80vw;
+  /* width:70vw; */
   height: 2em;
-  margin-top: 1.5em;
+  flex-grow: 10;
+  /* margin-top: 1.5em; */
   /* border-style: groove; */
   background-color: aliceblue;
   text-align: center;
   font-size: 1.5em;
   border-radius: 5px;
+}
+
+.flex {
+  margin-top: 1.5em;
+  width:80vw;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .game-footer {
@@ -67,6 +76,10 @@
   float: right;
   margin-right: 20vw;
 }
+ .shuffle {
+   flex-grow: 1;
+   margin-left: 10px
+ }
 
 /* .start-button button {
   width: 5em;

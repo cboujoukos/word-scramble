@@ -149,10 +149,17 @@ class Game extends Component{
       <div className="game-board">
         <div className="target-word">
           <TargetWord targetWord={this.props.targetWord} scramble={tiles} /> {/*gameStatus={this.state.status}*/}
-          <button onClick={(event)=>shuffleWord(event)}>Scramble</button>
+
+
         </div>
         <form>
-          <input id="answer" type="text" autoComplete="off" className="answer" />
+          <div className="flex">
+            <input id="answer" type="text" autoComplete="off" className="answer" />
+            {(this.state.status === 'playing' && this.state.scrambles < 6) ?
+              <button className="btn shuffle default right" onClick={(event)=>shuffleWord(event)}>Scramble</button>
+              :
+              null}
+            </div>
           <div className="game-footer">
             <Timer timeRemaining={this.state.timeRemaining} />
             <div className="start-button">

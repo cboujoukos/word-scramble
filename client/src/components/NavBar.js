@@ -16,7 +16,7 @@ class NavBar extends Component{
       fontWeight: 'bold'
     }
     const activeStyle = {
-      color: 'red'
+      color: 'lightgrey'
     }
 
     return(
