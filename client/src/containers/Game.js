@@ -11,9 +11,11 @@ class Game extends Component{
     this.state = {
       status: 'new', //new, playing, completed
       timeRemaining: this.props.initialSeconds,
-      countdownTimer: 3,
-      usedLetters: [],
-      gameRound:0
+      // countdownTimer: 3,
+      // score: 0,
+      // usedLetters: [],
+      // scrambles: 0,
+      gameRound: 0
     }
   }
 
@@ -26,8 +28,6 @@ class Game extends Component{
   handleOnStart = (event) => {
     event.preventDefault();
     this.props.onFetchRandomWord('easy');
-    // this.props.onFetchRandomWord('easy');
-    // this.setState({status: 'playing'}, () => console.log(this.state.status));
     // alert('wtf is happening?')
     this.setState((prevState) => {
       return { status: 'playing', gameRound: prevState.gameRound + 1 }
@@ -94,6 +94,17 @@ class Game extends Component{
     }
   }
 
+  // shuffleWord = event => {
+  //   event.preventDefault();
+  //   let newScramble =
+  //   this.props.scramble.split('')
+  //     .map(a => [Math.random(), a])
+  //     .sort((a, b) => a[0] - b[0])
+  //     .map(a => a[1])
+  //     .join('');
+  //     console.log(newScramble)
+  // };
+
 
   render(){
     let button;
@@ -110,14 +121,26 @@ class Game extends Component{
       tiles = this.props.targetWord
     }
 
+    const shuffleWord = event => {
+      event.preventDefault();
+      let newScramble =
+      this.props.scramble.split('')
+        .map(a => [Math.random(), a])
+        .sort((a, b) => a[0] - b[0])
+        .map(a => a[1])
+        .join('');
+        tiles = newScramble
+    };
+
 
     return(
       <div className="game-board">
         <div className="target-word">
           <TargetWord targetWord={this.props.targetWord} scramble={tiles} /> {/*gameStatus={this.state.status}*/}
+          <button onClick={(event)=>shuffleWord(event)}>Scramble</button>
         </div>
         <form>
-          <input id="answer" type="text" className="answer" />
+          <input id="answer" type="text" autoComplete="off" className="answer" />
           <div className="game-footer">
             <Timer timeRemaining={this.state.timeRemaining} />
             <div className="start-button">
