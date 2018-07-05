@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Timer extends Component{
+const Timer = ({timeRemaining}) => {
 
-  render(){
-    return(
-      <div className="timer">
-        Time: {this.props.timeRemaining}
-      </div>
-    )
-  }
+  return(
+    <div className="timer">
+      Time: {timeRemaining}
+    </div>
+  )
 }
 
 export default Timer
