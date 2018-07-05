@@ -98,11 +98,11 @@ class Game extends Component{
     let button;
 
     if (this.state.status === 'new') {
-      button = <button onClick={(event) => this.handleOnStart(event)}>Start</button>
+      button = <button className="btn default" onClick={(event) => this.handleOnStart(event)}>Start</button>
     } else if (this.state.status === 'playing') {
-      button = <button onClick={(event) => this.handleOnSubmit(event)}>Submit</button>
+      button = <button className="btn default" onClick={(event) => this.handleOnSubmit(event)}>Submit</button>
     } else {
-      button = <button>New Game</button>
+      button = <button className="btn default">New Game</button>
     }
 
     return(
