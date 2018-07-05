@@ -18,13 +18,14 @@ class Game extends Component{
   }
 
   componentDidMount() {
-    this.props.onFetchRandomWord('easy');
+    // this.props.onFetchRandomWord('easy');
   }
 
 
 
   handleOnStart = (event) => {
     event.preventDefault();
+    this.props.onFetchRandomWord('easy');
     // this.props.onFetchRandomWord('easy');
     // this.setState({status: 'playing'}, () => console.log(this.state.status));
     // alert('wtf is happening?')
@@ -68,7 +69,7 @@ class Game extends Component{
     }
   }
 
-  restartGame = () => {
+  gameOver = () => {
     clearInterval(this.intervalId);
     this.setState({ status: 'completed', timeRemaining: 0 });
   }
@@ -89,26 +90,31 @@ class Game extends Component{
       }, this.startInterval());
     } else {
       alert('you lose.')
-      this.restartGame()
+      this.gameOver()
     }
   }
 
 
   render(){
     let button;
+    let tiles;
 
     if (this.state.status === 'new') {
-      button = <button className="btn default" onClick={(event) => this.handleOnStart(event)}>Start</button>
+      button = <button className="btn default" onClick={(event) => this.handleOnStart(event)}>Start</button>;
+      tiles = 'SCRAMBLE'
     } else if (this.state.status === 'playing') {
-      button = <button className="btn default" onClick={(event) => this.handleOnSubmit(event)}>Submit</button>
+      button = <button className="btn default" onClick={(event) => this.handleOnSubmit(event)}>Submit</button>;
+      tiles = this.props.scramble
     } else {
-      button = <button className="btn default">New Game</button>
+      button = <button className="btn default">New Game</button>;
+      tiles = this.props.targetWord
     }
+
 
     return(
       <div className="game-board">
         <div className="target-word">
-          <TargetWord targetWord={this.props.targetWord} scramble={this.state.status === 'new' ? 'SCRAMBLE' : this.props.scramble} /> {/*gameStatus={this.state.status}*/}
+          <TargetWord targetWord={this.props.targetWord} scramble={tiles} /> {/*gameStatus={this.state.status}*/}
         </div>
         <form>
           <input id="answer" type="text" className="answer" />
