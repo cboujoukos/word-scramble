@@ -14,7 +14,8 @@ class Game extends Component{
       // countdownTimer: 3,
       // score: 0,
       // usedLetters: [],
-      // scrambles: 0,
+      scrambles: 0,
+      newScramble: '',
       gameRound: 0
     }
   }
@@ -109,27 +110,38 @@ class Game extends Component{
   render(){
     let button;
     let tiles;
+    let newScramble;
 
     if (this.state.status === 'new') {
       button = <button className="btn default" onClick={(event) => this.handleOnStart(event)}>Start</button>;
       tiles = 'SCRAMBLE'
     } else if (this.state.status === 'playing') {
       button = <button className="btn default" onClick={(event) => this.handleOnSubmit(event)}>Submit</button>;
-      tiles = this.props.scramble
+      // tiles = this.props.scramble
+      if (this.state.scrambles === 0) {
+        tiles = this.props.scramble
+      } else {
+        tiles = this.state.newScramble
+      }
     } else {
       button = <button className="btn default">New Game</button>;
       tiles = this.props.targetWord
     }
 
+
     const shuffleWord = event => {
       event.preventDefault();
-      let newScramble =
+      let shuffled =
       this.props.scramble.split('')
         .map(a => [Math.random(), a])
         .sort((a, b) => a[0] - b[0])
         .map(a => a[1])
         .join('');
-        tiles = newScramble
+        console.log(`tiles: ${tiles}, newScramble: ${newScramble}`)
+        this.setState((prevState) => {
+          return {scrambles: prevState.scrambles + 1, newScramble: shuffled}
+        }
+      )
     };
 
 
