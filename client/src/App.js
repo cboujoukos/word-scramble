@@ -31,8 +31,8 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to React</h1>
+            {/*<img src={logo} className="App-logo" alt="logo" />*/}
+            <h1 className="App-title">Word Scramble</h1>
           </header>
           <NavBar />
           <Route exact path="/" render={() => <h1>Welcome to the home page</h1>} />

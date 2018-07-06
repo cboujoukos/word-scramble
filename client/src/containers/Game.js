@@ -70,10 +70,6 @@ class Game extends Component{
     }
   }
 
-  gameOver = () => {
-    clearInterval(this.intervalId);
-    this.setState({ status: 'completed', timeRemaining: 0 });
-  }
 
   validateAnswer = (answer) => {
     if (this.validAnswer(answer)){
@@ -87,12 +83,17 @@ class Game extends Component{
         this.props.onFetchRandomWord('very_hard')
       };
       this.setState((prevState) => {
-        return { gameRound: prevState.gameRound + 1, timeRemaining: this.props.initialSeconds }
+        return { gameRound: prevState.gameRound + 1, timeRemaining: this.props.initialSeconds, newScramble: '' }
       }, this.startInterval());
     } else {
       alert('you lose.')
       this.gameOver()
     }
+  }
+
+  gameOver = () => {
+    clearInterval(this.intervalId);
+    this.setState({ status: 'completed', timeRemaining: 0 });
   }
 
   // shuffleWord = event => {
@@ -118,7 +119,7 @@ class Game extends Component{
     } else if (this.state.status === 'playing') {
       button = <button className="btn default" onClick={(event) => this.handleOnSubmit(event)}>Submit</button>;
       // tiles = this.props.scramble
-      if (this.state.scrambles === 0) {
+      if (this.state.scrambles === 0 || !this.state.newScramble) {
         tiles = this.props.scramble
       } else {
         tiles = this.state.newScramble
@@ -154,9 +155,9 @@ class Game extends Component{
         </div>
         <form>
           <div className="flex">
-            <input id="answer" type="text" autoComplete="off" className="answer" />
-            {(this.state.status === 'playing' && this.state.scrambles < 6) ?
-              <button className="btn shuffle default right" onClick={(event)=>shuffleWord(event)}>Scramble</button>
+            <input disabled={this.state.status === 'playing' ? false : true} id="answer" type="text" autoComplete="off" className="answer" />
+            {(this.state.status === 'playing' && this.state.scrambles < 5) ?
+              <a className="btn shuffle default right" onClick={(event)=>shuffleWord(event)}>Scramble</a>
               :
               null}
             </div>
