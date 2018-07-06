@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
 import { connect } from 'react-redux';
-import { fetchWordList, fetchRandomWord, validateWord } from '../actions/gameActions'; //, startGame, endGame
+import { fetchWordList, fetchRandomWord, fetchAnagrams } from '../actions/gameActions'; //, startGame, endGame
 import TargetWord from './TargetWord';
 import Timer from '../components/Timer';
 
@@ -67,20 +67,9 @@ class Game extends Component{
     if (answer.toUpperCase() === this.props.targetWord) {
       this.nextRound()
     } else {
-      // Check that the letters entered match the letters in target word
-      if (answer.toUpperCase().split('').sort().join() === this.props.targetWord.split('').sort().join()) {
-        // if yes, dispatch call to OED api to check for presence of answer
-          //Need this to return boolean value based on status 200
-// This mostly works, but gameOver() isn't called until after the next round has started!
-      return fetch(`${corsAnywhere}http://www.anagramica.com/lookup/${answer}`)
-        .then(rsp => rsp.json())
-        .then(json => {
-          if (json.found > 0) {
-            this.nextRound()
-          } else {
-            this.gameOver()
-          }
-        })
+      // Check that if answer is an anagram
+      if (this.props.anagrams.includes(answer)){
+        this.nextRound()
     } else {
       this.gameOver()
     }
@@ -102,25 +91,7 @@ class Game extends Component{
     }, this.startInterval());
   }
 
-  // validateAnswer = (answer) => {
-  //   if (this.validAnswer(answer)){
-  //     if (this.state.gameRound < 5) {
-  //       this.props.onFetchRandomWord('easy')
-  //     } else if ((this.state.gameRound > 4) && this.state.gameRound < 10) {
-  //       this.props.onFetchRandomWord('medium')
-  //     } else if ((this.state.gameRound > 9) && this.state.gameRound < 15) {
-  //       this.props.onFetchRandomWord('hard')
-  //     } else {
-  //       this.props.onFetchRandomWord('very_hard')
-  //     };
-  //     this.setState((prevState) => {
-  //       return { gameRound: prevState.gameRound + 1, timeRemaining: this.props.initialSeconds, newScramble: '' }
-  //     }, this.startInterval());
-  //   } else {
-  //
-  //     this.gameOver()
-  //   }
-  // }
+
 
   gameOver = () => {
     clearInterval(this.intervalId);
@@ -210,6 +181,7 @@ const mapStateToProps = state => {
   return {
     targetWord: state.game.targetWord,
     scramble: state.game.scramble,
+    anagrams: state.game.anagrams
     // gameStatus: state.game.gameStatus
   }
 }
@@ -218,7 +190,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onFetchWords: () => dispatch(fetchWordList()),
     onFetchRandomWord: (diff) => dispatch(fetchRandomWord(diff)),
-    onValidateWord: (word) => dispatch(validateWord(word))
+    onFetchAnagrams: (word) => dispatch(fetchAnagrams(word))
     // onStartGame: () => dispatch(startGame()),
     // onEndGame: () => dispatch(endGame())
   }

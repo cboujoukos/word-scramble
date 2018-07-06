@@ -22,6 +22,7 @@ export function fetchRandomWord(diff){
       .then(rsp => rsp.json())
       .then(json => json.data)
       .then(word => dispatch({type: 'FETCH_WORD', payload: word}))
+      .then(word => dispatch(fetchAnagrams(word.payload.name)));
   }
 }
 
