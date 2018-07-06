@@ -19,6 +19,22 @@ class App extends Component {
   //     .catch(error=> console.log(error))
   // }
 
+  // TESTING FETCH FROM EXTERNAL API
+  // componentDidMount() {
+  //   window.fetch(` https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com/api/v1/inflections/en/test`, {
+  //     headers: {
+  //       'Access-Control-Allow-Origin': '*',
+  //       'Content-Type': 'multipart/form-data',
+  //       "Accept": "application/json",
+  //       "app_id": `${process.env.REACT_APP_ID}`,
+  //       "app_key": `${process.env.REACT_APP_KEY}`
+  //     }
+  //   })
+  //   .then(rsp => {debugger});
+  //
+  //   window.fetch(`https://api.edamam.com/search?q=chicken`+`&app_id=c36af475`+`&app_key=db520ef743113e32c6a1ee7b5bd8ec9e`+`&to=100`)
+  // }
+
 
   render() {
     const GamePage = () => {

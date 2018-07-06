@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import fetch from 'isomorphic-fetch';
 import { connect } from 'react-redux';
 import { fetchWordList, fetchRandomWord, validateWord } from '../actions/gameActions'; //, startGame, endGame
 import TargetWord from './TargetWord';
@@ -59,16 +60,57 @@ class Game extends Component{
   }
 
   validAnswer = (answer) => {
+    const corsAnywhere = 'https://cors-anywhere.herokuapp.com/'
+    const OedApiUrl = 'https://od-api.oxforddictionaries.com/api/v1'
+
     // check if answer matches target word
-    // Check that the letters entered match the letters in target word
-    // if yes, dispatch call to OED api to check for presence of answer
     if (answer.toUpperCase() === this.props.targetWord) {
       return true
     } else {
-      // this.props.onValidateWord(answer)
+      // Check that the letters entered match the letters in target word
+      if (answer.toUpperCase().split('').sort().join() === this.props.targetWord.split('').sort().join()) {
+        // if yes, dispatch call to OED api to check for presence of answer
+          //Need this to return boolean value based on status 200
+        return fetch(`${corsAnywhere}${OedApiUrl}/inflections/en/${answer}`, {
+          // mode: "cors",
+          headers: {
+            // 'Access-Control-Allow-Origin': '*',
+            // 'Content-Type': 'multipart/form-data',
+            // "Accept": "application/json",
+            "app_id": `${process.env.REACT_APP_ID}`,
+            "app_key": `${process.env.REACT_APP_KEY}`
+          }
+        })
+        // .then(rsp => {
+        //   if (rsp.ok) {
+        //     return rsp.ok
+        //   } else {
+        //     return Promise.reject('something went wrong')
+        //   }
+        // })
+        // .then(status => status)
+        // .catch(error => console.log(error))
+        .then(function(rsp) {
+          if (rsp.status === 200) {
+            console.log(rsp.status)
+            return true
+          } else {
+            console.log('false')
+            return false
+          }
+        })
+        // .catch(error => console.log(error))
+        // .then(rsp => rsp.status)
+        // .then(status => {debugger})
+        // .then(status => status === 200)
+        // console.log('same letters')
+        // return true
+      // return false
+    } else {
       return false
     }
   }
+}
 
 
   validateAnswer = (answer) => {
