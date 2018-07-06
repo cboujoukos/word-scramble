@@ -2,6 +2,7 @@ import fetch from 'isomorphic-fetch';
 
 const corsAnywhere = 'https://cors-anywhere.herokuapp.com/'
 const OedApiUrl = 'https://od-api.oxforddictionaries.com/api/v1'
+const anagramUrl = `http://www.anagramica.com/all/`
 
 export function fetchWordList(){
   return (dispatch) => {
@@ -21,6 +22,16 @@ export function fetchRandomWord(diff){
       .then(rsp => rsp.json())
       .then(json => json.data)
       .then(word => dispatch({type: 'FETCH_WORD', payload: word}))
+  }
+}
+
+export function fetchAnagrams(word){
+  return(dispatch) => {
+    dispatch({type: 'LOADING'});
+    return fetch(`${corsAnywhere}${anagramUrl}${word}`)
+    .then(rsp => rsp.json())
+    .then(json => json.all)
+    .then(anagrams => dispatch({type: 'FETCH_ANAGRAMS', payload: anagrams}))
   }
 }
 

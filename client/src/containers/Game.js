@@ -59,83 +59,73 @@ class Game extends Component{
     }, 1000);
   }
 
-  validAnswer = (answer) => {
+  validateAnswer = (answer) => {
     const corsAnywhere = 'https://cors-anywhere.herokuapp.com/'
     const OedApiUrl = 'https://od-api.oxforddictionaries.com/api/v1'
 
     // check if answer matches target word
     if (answer.toUpperCase() === this.props.targetWord) {
-      return true
+      this.nextRound()
     } else {
       // Check that the letters entered match the letters in target word
       if (answer.toUpperCase().split('').sort().join() === this.props.targetWord.split('').sort().join()) {
         // if yes, dispatch call to OED api to check for presence of answer
           //Need this to return boolean value based on status 200
-        return fetch(`${corsAnywhere}${OedApiUrl}/inflections/en/${answer}`, {
-          // mode: "cors",
-          headers: {
-            // 'Access-Control-Allow-Origin': '*',
-            // 'Content-Type': 'multipart/form-data',
-            // "Accept": "application/json",
-            "app_id": `${process.env.REACT_APP_ID}`,
-            "app_key": `${process.env.REACT_APP_KEY}`
-          }
-        })
-        // .then(rsp => {
-        //   if (rsp.ok) {
-        //     return rsp.ok
-        //   } else {
-        //     return Promise.reject('something went wrong')
-        //   }
-        // })
-        // .then(status => status)
-        // .catch(error => console.log(error))
-        .then(function(rsp) {
-          if (rsp.status === 200) {
-            console.log(rsp.status)
-            return true
+// This mostly works, but gameOver() isn't called until after the next round has started!
+      return fetch(`${corsAnywhere}http://www.anagramica.com/lookup/${answer}`)
+        .then(rsp => rsp.json())
+        .then(json => {
+          if (json.found > 0) {
+            this.nextRound()
           } else {
-            console.log('false')
-            return false
+            this.gameOver()
           }
         })
-        // .catch(error => console.log(error))
-        // .then(rsp => rsp.status)
-        // .then(status => {debugger})
-        // .then(status => status === 200)
-        // console.log('same letters')
-        // return true
-      // return false
     } else {
-      return false
+      this.gameOver()
     }
   }
 }
 
-
-  validateAnswer = (answer) => {
-    if (this.validAnswer(answer)){
-      if (this.state.gameRound < 5) {
-        this.props.onFetchRandomWord('easy')
-      } else if ((this.state.gameRound > 4) && this.state.gameRound < 10) {
-        this.props.onFetchRandomWord('medium')
-      } else if ((this.state.gameRound > 9) && this.state.gameRound < 15) {
-        this.props.onFetchRandomWord('hard')
-      } else {
-        this.props.onFetchRandomWord('very_hard')
-      };
-      this.setState((prevState) => {
-        return { gameRound: prevState.gameRound + 1, timeRemaining: this.props.initialSeconds, newScramble: '' }
-      }, this.startInterval());
+  nextRound = () => {
+    if (this.state.gameRound < 5) {
+      this.props.onFetchRandomWord('easy')
+    } else if ((this.state.gameRound > 4) && this.state.gameRound < 10) {
+      this.props.onFetchRandomWord('medium')
+    } else if ((this.state.gameRound > 9) && this.state.gameRound < 15) {
+      this.props.onFetchRandomWord('hard')
     } else {
-      alert('you lose.')
-      this.gameOver()
-    }
+      this.props.onFetchRandomWord('very_hard')
+    };
+    this.setState((prevState) => {
+      return { gameRound: prevState.gameRound + 1, timeRemaining: this.props.initialSeconds, newScramble: '' }
+    }, this.startInterval());
   }
+
+  // validateAnswer = (answer) => {
+  //   if (this.validAnswer(answer)){
+  //     if (this.state.gameRound < 5) {
+  //       this.props.onFetchRandomWord('easy')
+  //     } else if ((this.state.gameRound > 4) && this.state.gameRound < 10) {
+  //       this.props.onFetchRandomWord('medium')
+  //     } else if ((this.state.gameRound > 9) && this.state.gameRound < 15) {
+  //       this.props.onFetchRandomWord('hard')
+  //     } else {
+  //       this.props.onFetchRandomWord('very_hard')
+  //     };
+  //     this.setState((prevState) => {
+  //       return { gameRound: prevState.gameRound + 1, timeRemaining: this.props.initialSeconds, newScramble: '' }
+  //     }, this.startInterval());
+  //   } else {
+  //
+  //     this.gameOver()
+  //   }
+  // }
 
   gameOver = () => {
     clearInterval(this.intervalId);
     this.setState({ status: 'completed', timeRemaining: 0 });
+    alert('you lose.')
   }
 
   // shuffleWord = event => {
@@ -184,7 +174,8 @@ class Game extends Component{
         this.setState((prevState) => {
           return {scrambles: prevState.scrambles + 1, newScramble: shuffled}
         }
-      )
+      );
+      document.getElementById('answer').focus()
     };
 
 
