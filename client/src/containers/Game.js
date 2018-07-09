@@ -77,6 +77,7 @@ class Game extends Component{
     }, 100);
   }
 
+// MAJOR PROBLEM : fetching anagrams takes roughly 8 seconds to complete. By this time player could have already entered a valid word and still losst.
   validateAnswer = (answer) => {
     const corsAnywhere = 'https://cors-anywhere.herokuapp.com/'
     const OedApiUrl = 'https://od-api.oxforddictionaries.com/api/v1'
@@ -183,7 +184,7 @@ class Game extends Component{
         <form>
           <div className="flex">
             <input disabled={this.state.status === 'playing' ? false : true} id="answer" type="text" autoComplete="off" className="answer" />
-            {(this.state.status === 'playing' && this.state.scrambles < 5) ?
+            {(this.state.status === 'playing' && this.state.scrambles < 10) ?
               <a className="btn shuffle default right" onClick={(event)=>shuffleWord(event)}>Scramble</a>
               :
               null}
