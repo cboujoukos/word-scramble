@@ -196,7 +196,7 @@ class Game extends Component{
           </div>
         </form>
         <div>
-          {this.state.score}
+          Score: {this.state.score}
         </div>
       </div>
     )

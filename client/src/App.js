@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import logo from './logo.svg';
 import Game from './containers/Game';
 import NavBar from './components/NavBar';
+import LeaderBoard from './components/LeaderBoard';
 import './App.css';
 
 class App extends Component {
@@ -53,7 +54,7 @@ class App extends Component {
           <NavBar />
           <Route exact path="/" render={() => <h1>Welcome to the home page</h1>} />
           <Route exact path="/play" component={GamePage} />
-          <Route exact path="/scores" render={() => <h1>High Scores</h1>} />
+          <Route exact path="/scores" component={LeaderBoard} />
           {/*<Game initialSeconds={30}/>*/}
         </div>
       </Router>
