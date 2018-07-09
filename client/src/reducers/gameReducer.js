@@ -2,7 +2,8 @@ export default(state={
   loading: false,
   targetWord: '',
   scramble: '',
-  anagrams: []
+  anagrams: [],
+  highScores: []
   // gameStatus: 'new'
 }, action) => {
   switch (action.type) {
@@ -14,6 +15,8 @@ export default(state={
       return Object.assign({}, state, {loading:false, targetWord: action.payload.name, scramble: action.payload.scramble});
     case 'FETCH_ANAGRAMS':
       return Object.assign({}, state, {loading:false, anagrams: action.payload});
+    case 'FETCH_HIGH_SCORES':
+      return Object.assign({}, state, {loading:false, highScores: action.payload})
     // case 'START_GAME':
     //   return Object.assign({}, state, {gameStatus: 'playing'});
     // case 'END_GAME':

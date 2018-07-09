@@ -26,6 +26,16 @@ export function fetchRandomWord(diff){
   }
 }
 
+export function fetchHighScores(){
+  return (dispatch) => {
+    dispatch({type: 'LOADING'});
+    return fetch(`api/high_scores`)
+    .then(rsp => rsp.json())
+    .then(json => json.data)
+    .then(scores => dispatch({type: 'FETCH_HIGH_SCORES', payload: scores}))
+  }
+}
+
 export function fetchAnagrams(word){
   return(dispatch) => {
     dispatch({type: 'LOADING'});
