@@ -3,6 +3,6 @@ Rails.application.routes.draw do
 
   scope '/api' do
     resources :words, only: [:index, :show]
-    resources :high_scores, only: [:index]
+    resources :high_scores, only: [:index, :create]
   end
 end
