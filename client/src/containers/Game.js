@@ -33,7 +33,7 @@ class Game extends Component{
     // alert('wtf is happening?')
     this.setState((prevState) => {
       return { status: 'playing', gameRound: prevState.gameRound + 1 }
-    }, this.startInterval());
+    }, this.startTimer());
   }
 
   handleOnSubmit = (event) => {
@@ -70,7 +70,7 @@ class Game extends Component{
         const newScore = prevState.score + 1;
         if (this.state.status === 'completed') {
           clearInterval(this.scoreIntervalId);
-          // return { status: 'completed', timeRemaining: 0 };
+          return { status: 'completed', timeRemaining: 0 };
         }
         return { score: newScore };
       });
@@ -86,27 +86,32 @@ class Game extends Component{
       this.nextRound()
     } else {
       // Check that if answer is an anagram
-      if (this.props.anagrams.includes(answer)){
+        if (this.props.anagrams.includes(answer)){
         this.nextRound()
-    } else {
-      this.gameOver()
+      } else {
+        this.gameOver()
+      }
     }
   }
-}
 
   nextRound = () => {
+    let bonus;
     if (this.state.gameRound < 5) {
-      this.props.onFetchRandomWord('easy')
+      this.props.onFetchRandomWord('easy');
+      bonus = 100
     } else if ((this.state.gameRound > 4) && this.state.gameRound < 10) {
-      this.props.onFetchRandomWord('medium')
+      this.props.onFetchRandomWord('medium');
+      bonus = 250
     } else if ((this.state.gameRound > 9) && this.state.gameRound < 15) {
-      this.props.onFetchRandomWord('hard')
+      this.props.onFetchRandomWord('hard');
+      bonus = 750
     } else {
-      this.props.onFetchRandomWord('very_hard')
+      this.props.onFetchRandomWord('very_hard');
+      bonus = 2000
     };
     this.setState((prevState) => {
-      return { gameRound: prevState.gameRound + 1, timeRemaining: this.props.initialSeconds, newScramble: '' }
-    }, this.startInterval());
+      return { gameRound: prevState.gameRound + 1, timeRemaining: this.props.initialSeconds, newScramble: '', score: (prevState.score + prevState.timeRemaining*10 + bonus) }
+    }, this.startTimer());
   }
 
 
