@@ -29,10 +29,15 @@ class Modal extends Component{
     return (
       <div className="backdrop" style={{backdropStyle}}>
         <div className="modal" style={{modalStyle}}>
-          {this.props.children}
-          <div className="modal-footer">
-            <button onClick={this.props.onClose}>Close</button>
-          </div>
+          <button className="btn exit" onClick={this.props.onClose}>X</button>
+          <h3>New High Score: {this.props.score}</h3>
+          <h4>Enter your initials</h4>
+          <form>
+            <input id="initials" type="text" autoComplete="off" />
+            <div className="modal-footer">
+              <button className="btn" onClick={this.props.onSubmit}>Submit</button>
+            </div>
+          </form>
         </div>
       </div>
     )

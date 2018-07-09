@@ -134,6 +134,11 @@ class Game extends Component{
 
   }
 
+  submitHighScore = (event) => {
+    event.preventDefault();
+    alert(document.getElementById('initials').value)
+  }
+
   // shuffleWord = event => {
   //   event.preventDefault();
   //   let newScramble =
@@ -210,7 +215,7 @@ class Game extends Component{
         <div>
           Score: {this.state.score}
         </div>
-        <Modal show={this.state.isOpen} onClose={this.toggleModal}>I guess i should be a container</Modal>
+        <Modal show={this.state.isOpen} onClose={this.toggleModal} onSubmit={this.submitHighScore} score={this.state.score}>I guess i should be a container</Modal>
       </div>
     )
   }

@@ -135,23 +135,46 @@ tbody .score {
   width: 60%
 }
 
+input {
+  text-align: center;
+}
+
 .backdrop {
-  position: 'fixed';
+  position: fixed;
+  z-index: 2;
+  display: flex;
+  justify-content: space-evenly;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: 'rgba(0,0,0,0.3)';
-  padding: 50
+  /* height: 100%;
+  width: 100%; */
+  background-color: rgba(0,0,0,0.3);
+  padding: 400px
 }
 
 .modal {
-  background-color: '#fff';
+
+
+  background-color: #fff;
   border-radius: 5;
   max-width: 500;
   min-height: 300;
-  margin: '0 auto';
-  padding: 30
+  margin: 0 auto;
+  padding: 30px;
+  text-align: center;
+}
+
+.exit {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: red;
+}
+
+.modal-footer {
+  margin: 2.5em
 }
 
 @keyframes App-logo-spin {
