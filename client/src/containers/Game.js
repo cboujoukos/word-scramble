@@ -13,7 +13,7 @@ class Game extends Component{
       status: 'new', //new, playing, completed
       timeRemaining: this.props.initialSeconds,
       // countdownTimer: 3,
-      // score: 0,
+      score: 0,
       // usedLetters: [],
       scrambles: 0,
       newScramble: '',
@@ -47,6 +47,11 @@ class Game extends Component{
   }
 
   startInterval = () => {
+    this.startTimer();
+    this.startScore()
+  }
+
+  startTimer = () => {
     this.intervalId = setInterval(() => {
       this.setState((prevState) => {
         const newTimeRemaining = prevState.timeRemaining - 1;
@@ -57,6 +62,19 @@ class Game extends Component{
         return { timeRemaining: newTimeRemaining };
       });
     }, 1000);
+  }
+
+  startScore = () => {
+    this.scoreIntervalId = setInterval(() => {
+      this.setState((prevState) => {
+        const newScore = prevState.score + 1;
+        if (this.state.status === 'completed') {
+          clearInterval(this.scoreIntervalId);
+          // return { status: 'completed', timeRemaining: 0 };
+        }
+        return { score: newScore };
+      });
+    }, 100);
   }
 
   validateAnswer = (answer) => {
@@ -172,6 +190,9 @@ class Game extends Component{
             </div>
           </div>
         </form>
+        <div>
+          {this.state.score}
+        </div>
       </div>
     )
   }
