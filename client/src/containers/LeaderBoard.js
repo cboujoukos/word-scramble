@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchHighScores } from '../actions/gameActions';
+import ScoreEntry from '../components/ScoreEntry';
 
 class LeaderBoard extends Component {
 
@@ -9,7 +10,9 @@ class LeaderBoard extends Component {
   }
 
   render(){
-    
+    const renderHighScores = this.props.highScores.map((entry, i) =>
+    <ScoreEntry score={entry.score} name={entry.name} rank={i+1} />
+  )
     return(
       <div>
         <h1>High Scores</h1>
@@ -21,22 +24,8 @@ class LeaderBoard extends Component {
               <th className="score">Score</th>
               <th className="player">Name</th>
             </tr>
-            <tr>
-              <td className="rank">1st</td>
-              <td className="score">20000</td>
-              <td className="player">???</td>
-            </tr>
-            <tr>
-              <td className="rank">2nd</td>
-              <td className="score">18000</td>
-              <td className="player">???</td>
-            </tr>
-            <tr>
-              <td className="rank">3rd</td>
-              <td className="score">15000</td>
-              <td className="player">???</td>
-            </tr>
           </tbody>
+          {renderHighScores}
         </table>
       </div>
     )
