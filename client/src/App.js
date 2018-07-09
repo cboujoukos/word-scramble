@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import logo from './logo.svg';
 import Game from './containers/Game';
 import NavBar from './components/NavBar';
-import LeaderBoard from './components/LeaderBoard';
+import LeaderBoard from './containers/LeaderBoard';
 import './App.css';
 
 class App extends Component {
