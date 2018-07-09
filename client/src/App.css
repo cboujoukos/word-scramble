@@ -109,6 +109,20 @@
   background: whitesmoke;
 }
 
+table {
+  margin: 0 auto;
+}
+
+table, th, td {
+  width: 90%;
+  border: 2px solid black;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 15px;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
