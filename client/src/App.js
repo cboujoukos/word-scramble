@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import Game from './containers/Game';
 import NavBar from './components/NavBar';
 import LeaderBoard from './containers/LeaderBoard';
+import NewHighScore from './components/NewHighScore'
 import './App.css';
 
 class App extends Component {
@@ -55,6 +56,7 @@ class App extends Component {
           <Route exact path="/" render={() => <h1>Welcome to the home page</h1>} />
           <Route exact path="/play" component={GamePage} />
           <Route exact path="/high_scores" component={LeaderBoard} />
+          <Route exact path="/high_scores/new" component={NewHighScore} />
           {/*<Game initialSeconds={30}/>*/}
         </div>
       </Router>

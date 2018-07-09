@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { fetchWordList, fetchRandomWord, fetchAnagrams, fetchHighScores } from '../actions/gameActions'; //, startGame, endGame
 import TargetWord from './TargetWord';
 import Timer from '../components/Timer';
+import Modal from '../components/Modal';
 
 class Game extends Component{
   constructor(props){
@@ -18,7 +19,8 @@ class Game extends Component{
       // usedLetters: [],
       scrambles: 0,
       newScramble: '',
-      gameRound: 0
+      gameRound: 0,
+      isOpen: false
     }
   }
 
@@ -26,7 +28,11 @@ class Game extends Component{
     this.props.onFetchHighScores()
   }
 
-
+  toggleModal = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
 
   handleOnStart = (event) => {
     event.preventDefault();
@@ -122,7 +128,8 @@ class Game extends Component{
     clearInterval(this.intervalId);
     this.setState({ status: 'completed', timeRemaining: 0 });
     if (this.state.score > this.props.highScores[this.props.highScores.length-1].score){
-      this.props.history.push('/high_scores')
+      this.toggleModal()
+      // this.props.history.push('/high_scores');
     }
 
   }
@@ -203,6 +210,7 @@ class Game extends Component{
         <div>
           Score: {this.state.score}
         </div>
+        <Modal show={this.state.isOpen} onClose={this.toggleModal}>I guess i should be a container</Modal>
       </div>
     )
   }
