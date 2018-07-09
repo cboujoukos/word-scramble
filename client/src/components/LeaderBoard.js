@@ -9,24 +9,24 @@ export default class LeaderBoard extends Component {
         <table className="score-table">
           <tbody>
             <tr>
-              <th>Rank</th>
-              <th>Score</th>
-              <th>Name</th>
+              <th className="rank">Rank</th>
+              <th className="score">Score</th>
+              <th className="player">Name</th>
             </tr>
             <tr>
-              <td>1st</td>
-              <td>20000</td>
-              <td>???</td>
+              <td className="rank">1st</td>
+              <td className="score">20000</td>
+              <td className="player">???</td>
             </tr>
             <tr>
-              <td>2nd</td>
-              <td>18000</td>
-              <td>???</td>
+              <td className="rank">2nd</td>
+              <td className="score">18000</td>
+              <td className="player">???</td>
             </tr>
             <tr>
-              <td>3rd</td>
-              <td>15000</td>
-              <td>???</td>
+              <td className="rank">3rd</td>
+              <td className="score">15000</td>
+              <td className="player">???</td>
             </tr>
           </tbody>
         </table>
