@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import fetch from 'isomorphic-fetch';
 import { connect } from 'react-redux';
-import { fetchWordList, fetchRandomWord, fetchAnagrams } from '../actions/gameActions'; //, startGame, endGame
+import { fetchWordList, fetchRandomWord, fetchAnagrams, fetchHighScores } from '../actions/gameActions'; //, startGame, endGame
 import TargetWord from './TargetWord';
 import Timer from '../components/Timer';
 
@@ -22,7 +23,7 @@ class Game extends Component{
   }
 
   componentDidMount() {
-    // this.props.onFetchRandomWord('easy');
+    this.props.onFetchHighScores()
   }
 
 
@@ -120,7 +121,10 @@ class Game extends Component{
   gameOver = () => {
     clearInterval(this.intervalId);
     this.setState({ status: 'completed', timeRemaining: 0 });
-    alert('you lose.')
+    if (this.state.score > this.props.highScores[this.props.highScores.length-1].score){
+      this.props.history.push('/high_scores')
+    }
+
   }
 
   // shuffleWord = event => {
@@ -208,7 +212,8 @@ const mapStateToProps = state => {
   return {
     targetWord: state.game.targetWord,
     scramble: state.game.scramble,
-    anagrams: state.game.anagrams
+    anagrams: state.game.anagrams,
+    highScores: state.game.highScores
     // gameStatus: state.game.gameStatus
   }
 }
@@ -217,9 +222,10 @@ const mapDispatchToProps = dispatch => {
   return {
     onFetchWords: () => dispatch(fetchWordList()),
     onFetchRandomWord: (diff) => dispatch(fetchRandomWord(diff)),
-    onFetchAnagrams: (word) => dispatch(fetchAnagrams(word))
+    onFetchAnagrams: (word) => dispatch(fetchAnagrams(word)),
+    onFetchHighScores: () => dispatch(fetchHighScores())
     // onStartGame: () => dispatch(startGame()),
     // onEndGame: () => dispatch(endGame())
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Game)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Game))

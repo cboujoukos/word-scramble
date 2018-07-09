@@ -54,7 +54,7 @@ class App extends Component {
           <NavBar />
           <Route exact path="/" render={() => <h1>Welcome to the home page</h1>} />
           <Route exact path="/play" component={GamePage} />
-          <Route exact path="/scores" component={LeaderBoard} />
+          <Route exact path="/high_scores" component={LeaderBoard} />
           {/*<Game initialSeconds={30}/>*/}
         </div>
       </Router>

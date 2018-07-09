@@ -28,7 +28,7 @@ class NavBar extends Component{
         <NavLink exact to="/play"
         style={defaultStyle}
         activeStyle={activeStyle}>Play</NavLink>
-        <NavLink exact to="scores"
+        <NavLink exact to="high_scores"
         style={defaultStyle}
         activeStyle={activeStyle}>High Scores</NavLink>
       </nav>
