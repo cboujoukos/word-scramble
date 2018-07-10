@@ -14,7 +14,7 @@ class LeaderBoard extends Component {
     <ScoreEntry key={entry.id} score={entry.score} name={entry.name} rank={i+1} />
   )
     return(
-      <div>
+      <div className="leader-board">
         <h1>High Scores</h1>
 
         <table className="score-table">

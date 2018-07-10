@@ -20,7 +20,7 @@ class Game extends Component{
       scrambles: 0,
       newScramble: '',
       gameRound: 0,
-      isOpen: false
+      isOpen: true
     }
   }
 
@@ -64,6 +64,9 @@ class Game extends Component{
         const newTimeRemaining = prevState.timeRemaining - 1;
         if (newTimeRemaining === 0) {
           clearInterval(this.intervalId);
+          if (this.state.score > this.props.highScores[this.props.highScores.length-1].score){
+            this.toggleModal()
+          }
           return { status: 'completed', timeRemaining: 0 };
         }
         return { timeRemaining: newTimeRemaining };
@@ -118,7 +121,7 @@ class Game extends Component{
       bonus = 2000
     };
     this.setState((prevState) => {
-      return { gameRound: prevState.gameRound + 1, timeRemaining: this.props.initialSeconds, newScramble: '', score: (prevState.score + prevState.timeRemaining*10 + bonus) }
+      return { gameRound: prevState.gameRound + 1, timeRemaining: this.props.initialSeconds, newScramble: '', score: (prevState.score + prevState.timeRemaining*5 + bonus) }
     }, this.startTimer());
   }
 
@@ -191,32 +194,29 @@ class Game extends Component{
 
 
     return(
-      <div className="game-board">
-        <div className="target-word">
-          <TargetWord targetWord={this.props.targetWord} scramble={tiles} /> {/*gameStatus={this.state.status}*/}
 
+        <div className="game-board">
+          <div className="target-word row item">
+            <TargetWord targetWord={this.props.targetWord} scramble={tiles} shuffle={(event)=>shuffleWord(event)} status={this.state.status} scrambles={this.state.scrambles} />
 
-        </div>
-        <form>
-          <div className="flex">
-            <input disabled={this.state.status === 'playing' ? false : true} id="answer" type="text" autoComplete="off" className="answer" />
-            {(this.state.status === 'playing' && this.state.scrambles < 10) ?
-              <a className="btn shuffle default right" onClick={(event)=>shuffleWord(event)}>Scramble</a>
-              :
-              null}
-            </div>
-          <div className="game-footer">
-            <Timer timeRemaining={this.state.timeRemaining} />
-            <div className="start-button">
-              {button}
-            </div>
           </div>
-        </form>
-        <div>
-          Score: {this.state.score}
+          <form>
+            <div className="container">
+              <input disabled={this.state.status === 'playing' ? false : true} id="answer" type="text" autoComplete="off" className="answer" />
+
+
+              <div className="game-footer row">
+                <div><Timer timeRemaining={this.state.timeRemaining} /></div>
+                <div>{button}</div>
+                <div>
+                  Score: {this.state.score}
+                </div>
+              </div>
+            </div>
+          </form>
+          <Modal show={this.state.isOpen} onClose={this.toggleModal} onSubmit={this.submitHighScore} score={this.state.score} />
         </div>
-        <Modal show={this.state.isOpen} onClose={this.toggleModal} onSubmit={this.submitHighScore} score={this.state.score}>I guess i should be a container</Modal>
-      </div>
+
     )
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import Game from './containers/Game';
 import NavBar from './components/NavBar';
 import LeaderBoard from './containers/LeaderBoard';
@@ -45,19 +45,35 @@ class App extends Component {
       )
     }
 
+    const rules = () => {
+      return (
+        <div className="leader-board">
+          <h1>How to Play</h1>
+          <p>The object of the game is simple: unscramble as many words as you can!</p>
+          <p>Once you hit the start button you will have 30 seconds to unscramble each word. If you get stumped on a word, hit the shuffle icon to mix up those tiles. Use your shuffles wisely, though, you only get 10.</p>
+        </div>
+      )
+    }
+
     return (
       <Router>
         <div className="App">
           <header className="App-header">
             {/*<img src={logo} className="App-logo" alt="logo" />*/}
             <h1 className="App-title">Word Scramble</h1>
+            <NavBar />
           </header>
-          <NavBar />
-          <Route exact path="/" render={() => <h1>Welcome to the home page</h1>} />
-          <Route exact path="/play" component={GamePage} />
-          <Route exact path="/high_scores" component={LeaderBoard} />
-          <Route exact path="/high_scores/new" component={NewHighScore} />
-          {/*<Game initialSeconds={30}/>*/}
+          <div className="main">
+            <Route exact path="/" component={GamePage} />
+            <Route exact path="/rules" component={rules} />
+            <Route exact path="/high_scores" component={LeaderBoard} />
+            {/*<Route exact path="/high_scores/new" component={NewHighScore} />*/}
+            {/*<Game initialSeconds={30}/>*/}
+          </div>
+          <footer>
+            <p>Created by: Chris Boujoukos</p>
+            <p><div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Shuffle">Shuffle</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div></p>
+          </footer>
         </div>
       </Router>
     );

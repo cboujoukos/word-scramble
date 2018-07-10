@@ -2,16 +2,13 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
 .App-header {
-  background-color: navy;
-  height: 60px;
+  background-color: #341C09;
+  height: 100px;
   padding: 20px;
-  color: white;
+  color: #B85B14;
+  font-size: 1.5em;
+  border-bottom: 2px solid #c2d4dd;
 }
 
 .App-title {
@@ -22,8 +19,61 @@
   font-size: large;
 }
 
+nav {
+  margin-top:-15px
+}
+
+div.main {
+  padding-top:5vh;
+  height: 90vh;
+  background-color: #D4E4F7;
+}
+
+footer {
+  display:block;
+  width:100vw;
+  position:fixed;
+  bottom:0;;
+  text-align:center;
+  background-color: #341C09;
+  border-top: 1px solid darkslategray;
+  color: #B85B14;
+}
+
+.leader-board {
+  /* background-color: #b2b2b2; */
+  width:80vw;
+  margin-left:5vw;
+  padding: 5vw;
+  padding-top:2vh;
+}
+
 .game-board {
-  margin-top: 10vh
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* margin-top: 10vh; */
+  /* display: flex;
+  align-items: stretch; */
+  /* justify-content: space-between; */
+  background-color: #D4E4F7;
+  height: 50vh;
+  width:80vw;
+  margin-left:5vw;
+  padding: 5vw;
+}
+
+.row {
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.target-word {
+  display: block;
+  align-self: center;
+  margin-bottom: 5vh;
 }
 
 .letter-tile {
@@ -42,15 +92,39 @@
 }
 
 .answer {
-  /* width:70vw; */
   height: 2em;
-  flex-grow: 10;
+  /* flex-grow: 10; */
   /* margin-top: 1.5em; */
   /* border-style: groove; */
   background-color: aliceblue;
   text-align: center;
   font-size: 1.5em;
   border-radius: 5px;
+  /* align-self: baseline; */
+}
+
+.container {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: space-between; */
+}
+
+.item {
+
+}
+
+a {
+  color: #236AB9;
+}
+
+h1, h2, h3, h4, h5 {
+  color: #B85B14;
+}
+
+.box {
+  display:flex;
+  justify-content: center;
 }
 
 .flex {
@@ -63,9 +137,10 @@
 
 .game-footer {
     margin-top: 3.5em;
+  /* align-self: flex-end; */
 }
 
-.timer {
+/* .timer {
   float: left;
   margin-left: 20vw;
   margin-top: 12px;
@@ -75,10 +150,17 @@
 .start-button {
   float: right;
   margin-right: 20vw;
-}
+} */
  .shuffle {
-   flex-grow: 1;
-   margin-left: 10px
+   /* flex-grow: 1;
+   margin-left: 10px */
+   display: inline-block;
+   height: 30px;
+   /* width:30px; */
+   border: solid black; border-width: 1px;
+   border-radius: 5px;
+   padding: 14px 12px 4px;
+   margin: 10px;
  }
 
 /* .start-button button {
@@ -109,11 +191,14 @@
   background: whitesmoke;
 }
 
+/*/////////// Leaderboard ///////////////*/
+
 table {
   margin: 0 auto;
 }
 
 table, th, td {
+  background-color:white;
   width: 90%;
   border: 2px solid black;
   border-collapse: collapse;
@@ -139,6 +224,8 @@ input {
   text-align: center;
 }
 
+/*//////////// High Score Modal //////////////*/
+
 .backdrop {
   position: fixed;
   z-index: 2;
@@ -151,16 +238,14 @@ input {
   /* height: 100%;
   width: 100%; */
   background-color: rgba(0,0,0,0.3);
-  padding: 400px
+  padding: 300px
 }
 
 .modal {
-
-
   background-color: #fff;
-  border-radius: 5;
-  max-width: 500;
-  min-height: 300;
+  border-radius: 5px;
+  max-width: 500px;
+  min-height: 225px;
   margin: 0 auto;
   padding: 30px;
   text-align: center;
@@ -174,10 +259,6 @@ input {
 }
 
 .modal-footer {
-  margin: 2.5em
-}
+  margin: 2.5em;
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
