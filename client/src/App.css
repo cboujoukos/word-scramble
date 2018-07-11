@@ -1,4 +1,9 @@
 .App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:100%;
   text-align: center;
   font-family: 'Libre Baskerville', serif;
 }
@@ -6,6 +11,7 @@
 .App-header {
   display: flex;
   justify-content: space-between;
+  width:100%;
   background-color: #829FC0;
   height: 60px;
   padding: 20px;
@@ -61,17 +67,19 @@ footer {
 
 .game-board {
   display:flex;
+  align-self: center;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   margin-top: 5vh;
+  max-width: 600px;
   /* display: flex;
   align-items: stretch; */
   /* justify-content: space-between; */
   background-color: #F6FAFD;
   height: 50vh;
   width:80vw;
-  margin-left:5vw;
+  /* margin-left:5vw; */
   padding: 5vw;
   border: 1px solid #091D34;
 }
@@ -107,6 +115,11 @@ footer {
   margin-bottom: 5vh;
 }
 
+.game-banner {
+  margin-bottom: 5vh;
+  border-bottom: 1px solid;
+}
+
 .letter-tile {
   display:inline-block;
   height: 30px;
@@ -125,6 +138,8 @@ footer {
 
 .answer {
   height: 2em;
+  max-width: 60%;
+  align-self: center;
   /* flex-grow: 10; */
   /* margin-top: 1.5em; */
   /* border-style: groove; */
@@ -132,15 +147,21 @@ footer {
   text-align: center;
   font-size: 1.5em;
   border-radius: 5px;
-  margin-bottom: 4vh;
+  /* margin-bottom: 4vh; */
   /* align-self: baseline; */
 }
 
 .container {
+  width: 100vw;
   display:flex;
   flex-direction: column;
   justify-content: center;
   /* align-items: space-between; */
+}
+
+.input-container {
+  width:100vw;
+  margin-bottom: 5vh;
 }
 
 .item {

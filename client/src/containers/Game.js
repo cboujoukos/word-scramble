@@ -194,7 +194,7 @@ class Game extends Component{
 
 
     return(
-
+      <div className="container">
         <div className="game-board">
         <div className="game-banner row">
           <div className="clock"><Timer timeRemaining={this.state.timeRemaining} /></div>
@@ -206,14 +206,14 @@ class Game extends Component{
 
           </div>
           <form>
-            <div className="container">
+            <div className="input-container">
               <input disabled={this.state.status === 'playing' ? false : true} id="answer" type="text" autoComplete="off" className="answer" />
             </div>
             <div>{button}</div>
           </form>
           <Modal show={this.state.isOpen} onClose={this.toggleModal} onSubmit={this.submitHighScore} score={this.state.score} />
         </div>
-
+      </div>
     )
   }
 }
