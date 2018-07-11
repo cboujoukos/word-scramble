@@ -10,8 +10,8 @@ class NavBar extends Component{
       padding: '20px 16px 0 16px',
       textDecoration: 'none',
       // backgroundColor: 'black',
-      color: '#236AB9',
-      textTransform: 'uppercase',
+      color: '#091D34',
+      // textTransform: 'uppercase',
       fontSize: 14,
       fontWeight: 'bold'
     }
@@ -24,15 +24,15 @@ class NavBar extends Component{
         <NavLink
           exact to="/"
           style={defaultStyle}
-          activeStyle={activeStyle}>Play</NavLink>
+          activeStyle={activeStyle}>play</NavLink>
         <NavLink
           exact to="/rules"
           style={defaultStyle}
-          activeStyle={activeStyle}>Rules</NavLink>
+          activeStyle={activeStyle}>rules</NavLink>
         <NavLink
           exact to="/high_scores"
           style={defaultStyle}
-          activeStyle={activeStyle}>High Scores</NavLink>
+          activeStyle={activeStyle}>high scores</NavLink>
       </nav>
     )
   }

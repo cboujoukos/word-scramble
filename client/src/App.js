@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Game from './containers/Game';
 import NavBar from './components/NavBar';
 import LeaderBoard from './containers/LeaderBoard';
-import NewHighScore from './components/NewHighScore'
+// import NewHighScore from './components/NewHighScore';
 import './App.css';
 
 class App extends Component {
@@ -72,7 +72,7 @@ class App extends Component {
           </div>
           <footer>
             <p>Created by: Chris Boujoukos</p>
-            <p><div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Shuffle">Shuffle</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div></p>
+            <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Shuffle">Shuffle</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div><br />
           </footer>
         </div>
       </Router>

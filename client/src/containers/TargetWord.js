@@ -36,7 +36,7 @@ class TargetWord extends Component {
         {/*{this.props.gameStatus === 'new' ? renderDefault : renderScramble}*/}
         {renderScramble}
         {(this.props.status === 'playing' && this.props.scrambles < 10) ?
-          <img src={shuffle} className="btn shuffle default" onClick={this.props.shuffle} />
+          <img alt="Shuffle" src={shuffle} className="btn shuffle default" onClick={this.props.shuffle} />
           :
           null}
       </div>

@@ -20,7 +20,7 @@ class Game extends Component{
       scrambles: 0,
       newScramble: '',
       gameRound: 0,
-      isOpen: true
+      isOpen: false
     }
   }
 
@@ -37,7 +37,7 @@ class Game extends Component{
   handleOnStart = (event) => {
     event.preventDefault();
     this.props.onFetchRandomWord('easy');
-    // alert('wtf is happening?')
+    document.getElementById('answer').focus();
     this.setState((prevState) => {
       return { status: 'playing', gameRound: prevState.gameRound + 1 }
     }, this.startTimer());
@@ -196,6 +196,11 @@ class Game extends Component{
     return(
 
         <div className="game-board">
+        <div className="game-banner row">
+          <div className="clock"><Timer timeRemaining={this.state.timeRemaining} /></div>
+          <div className="game-round">Round {this.state.gameRound}</div>
+          <div className="score">Score: {this.state.score}</div>
+        </div>
           <div className="target-word row item">
             <TargetWord targetWord={this.props.targetWord} scramble={tiles} shuffle={(event)=>shuffleWord(event)} status={this.state.status} scrambles={this.state.scrambles} />
 
@@ -203,16 +208,8 @@ class Game extends Component{
           <form>
             <div className="container">
               <input disabled={this.state.status === 'playing' ? false : true} id="answer" type="text" autoComplete="off" className="answer" />
-
-
-              <div className="game-footer row">
-                <div><Timer timeRemaining={this.state.timeRemaining} /></div>
-                <div>{button}</div>
-                <div>
-                  Score: {this.state.score}
-                </div>
-              </div>
             </div>
+            <div>{button}</div>
           </form>
           <Modal show={this.state.isOpen} onClose={this.toggleModal} onSubmit={this.submitHighScore} score={this.state.score} />
         </div>
