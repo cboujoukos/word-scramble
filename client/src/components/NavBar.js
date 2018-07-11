@@ -35,23 +35,6 @@ class NavBar extends Component{
             style={defaultStyle}
             activeStyle={activeStyle}>high scores</NavLink>
           </div>
-          <div className="navNarrow">
-            <i className="fa fa-bars fa-2x"></i>
-            <div className="narrowLinks">
-              <NavLink
-                exact to="/"
-                style={defaultStyle}
-                activeStyle={activeStyle}>play</NavLink>
-              <NavLink
-                exact to="/rules"
-                style={defaultStyle}
-                activeStyle={activeStyle}>rules</NavLink>
-              <NavLink
-                exact to="/high_scores"
-                style={defaultStyle}
-                activeStyle={activeStyle}>high scores</NavLink>
-              </div>
-          </div>
       </nav>
     )
   }

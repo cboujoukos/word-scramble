@@ -8,6 +8,8 @@
   font-family: 'Libre Baskerville', serif;
 }
 
+/*//////////// Header /////////////*/
+
 .App-header {
   display: flex;
   justify-content: space-between;
@@ -26,9 +28,6 @@
   padding-left: 2vw
 }
 
-.App-intro {
-  font-size: large;
-}
 
 nav {
   /* margin-top:-15px */
@@ -40,14 +39,7 @@ nav a {
   border-left: 1px solid #091D34;
 }
 
-.navWide {
-  display: block;
-}
-
-.navNarrow {
-  display:none;
-}
-
+/*/////////////// Containers //////////////*/
 div.main {
   padding-top:5vh;
   height: 90vh;
@@ -119,6 +111,32 @@ h1 {
   margin-bottom: 20px;
 }
 
+.game-banner {
+  margin-bottom: 5vh;
+  border-bottom: 1px solid;
+}
+
+.container {
+  width: 100vw;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: space-between; */
+}
+
+.input-container {
+  width:100vw;
+  margin-bottom: 5vh;
+}
+
+.box {
+  display:flex;
+  justify-content: center;
+}
+
+
+/*////////////////// Elements ///////////////////*/
+
 .clock {
   padding: 10px;
   padding-right: 25px;
@@ -141,10 +159,7 @@ h1 {
   margin-bottom: 5vh;
 }
 
-.game-banner {
-  margin-bottom: 5vh;
-  border-bottom: 1px solid;
-}
+
 
 img.shuffle {
   /* flex-grow: 1;
@@ -166,7 +181,8 @@ img.small-shuffle {
   display:inline-block;
   height: 30px;
   width:30px;
-  border: solid black; border-width: 1px;
+  border: solid burlywood;
+  border-width: 1px;
   border-radius: 5px;
   box-shadow: 2px 2px 2px 2px #ccc;
   background-color: moccasin;
@@ -197,69 +213,25 @@ img.small-shuffle {
   /* align-self: baseline; */
 }
 
-.container {
-  width: 100vw;
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  /* align-items: space-between; */
-}
-
-.input-container {
-  width:100vw;
-  margin-bottom: 5vh;
-}
-
-.item {
-
-}
 
 a {
   color: #133863;
 }
 
-/* h1, h2, h3, h4, h5 {
-  color: #B85B14;
-} */
 
-.box {
-  display:flex;
-  justify-content: center;
-}
-
-.flex {
+/* .flex {
   margin-top: 1.5em;
   width:80vw;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-}
+} */
 
 .game-footer {
     margin-top: 3.5em;
   /* align-self: flex-end; */
 }
 
-/* .timer {
-  float: left;
-  margin-left: 20vw;
-  margin-top: 12px;
-  font-size: 1.25em
-}
-
-.start-button {
-  float: right;
-  margin-right: 20vw;
-} */
-
-
-/* .start-button button {
-  width: 5em;
-  height: 2.5em;
-  font-size: 1em;
-  border-radius: 5px;
-  background-color: whitesmoke;
-} */
 
 .btn {
   border: 1px solid black;
@@ -354,6 +326,8 @@ input {
 
 }
 
+/*/////////////// Media Queries ///////////////*/
+
 @media (max-width: 780px) {
   .navWide {
     display: block;
@@ -377,8 +351,8 @@ input {
     display:inline-block;
     /* height: 30px;
     width:30px; */
-    border: solid black; border-width: 1px;
-    border-radius: 5px;
+    border: solid burlywood;
+    border-width: 1px;
     box-shadow: 2px 2px 2px 2px #ccc;
     background-color: moccasin;
     padding: 11px 12px 0px;
@@ -409,7 +383,8 @@ input {
     width:10px;
     border:none;
     background-color: #F6FAFD;
-    border-bottom: 2px solid black;
+    border: solid burlywood;
+    border-width: 1px;
     padding: 11px 12px 0px;
     margin: 5px;
     /* font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; */
@@ -422,7 +397,7 @@ input {
     display: block;
     border-bottom: 2px solid black;
     padding: 10px;
-    margin: 5px;
+    margin: 10px;
     font-family: 'Libre Baskerville', serif;
   	font-size: 16px;
   }
@@ -434,14 +409,14 @@ input {
     display: block;
     border-bottom: 2px solid black;
     padding: 10px;
-    margin: 2px;
+    margin: 3px;
     font-family: 'Libre Baskerville', serif;
   	font-size: 16px;
   }
 
   .App-title {
     font-size: 1em;
-    margin-top: 0px;
+    margin-top: 35px;
   }
 
   nav a {
@@ -450,6 +425,13 @@ input {
     border-left: none;
   }
 
+}
+
+@media (max-width: 458px) {
+  .App-title {
+    font-size: 1em;
+    margin-top: 0px;
+  }
 }
 
 @media (max-width: 400px){
