@@ -6,6 +6,7 @@ import { fetchWordList, fetchRandomWord, fetchAnagrams, fetchHighScores, postHig
 import TargetWord from './TargetWord';
 import Timer from '../components/Timer';
 import Modal from '../components/Modal';
+import shuffle from '../shuffle.png';
 
 class Game extends Component{
   constructor(props){
@@ -211,7 +212,13 @@ class Game extends Component{
             <div className="input-container">
               <input disabled={this.state.status === 'playing' ? false : true} id="answer" type="text" autoComplete="off" className="answer" />
             </div>
-            <div>{button}</div>
+            <div className="btn-row">
+              {(this.state.status === 'playing' && this.state.scrambles < 10) ?
+              <img alt="Shuffle" src={shuffle} className="btn small-shuffle default" onClick={(event)=>shuffleWord(event)} />
+              :
+              null}
+              {button}
+            </div>
           </form>
           <Modal show={this.state.isOpen} onClose={this.toggleModal} onSubmit={this.submitHighScore} score={this.state.score} />
         </div>

@@ -37,7 +37,15 @@ nav {
 }
 nav a {
   margin-left: 30px;
-  border-left: 1px solid black
+  border-left: 1px solid #091D34;
+}
+
+.navWide {
+  display: block;
+}
+
+.navNarrow {
+  display:none;
 }
 
 div.main {
@@ -102,6 +110,15 @@ h1 {
   margin-bottom: 20px;
 }
 
+.btn-row {
+  display:flex;
+  flex-direction: row;
+  width:100%;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
 .clock {
   padding: 10px;
   padding-right: 25px;
@@ -129,6 +146,22 @@ h1 {
   border-bottom: 1px solid;
 }
 
+img.shuffle {
+  /* flex-grow: 1;
+  margin-left: 10px */
+  display: inline-block;
+  height: 30px;
+  width:35px;
+  border: solid black; border-width: 1px;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+}
+
+img.small-shuffle {
+  display:none;
+}
+
 .letter-tile {
   display:inline-block;
   height: 30px;
@@ -143,6 +176,10 @@ h1 {
   font-family: 'Libre Baskerville', serif;
 	font-size: 20px;
 	font-weight: 500;
+}
+
+.letter-underline {
+  display:none;
 }
 
 .answer {
@@ -214,17 +251,7 @@ a {
   float: right;
   margin-right: 20vw;
 } */
- .shuffle {
-   /* flex-grow: 1;
-   margin-left: 10px */
-   display: inline-block;
-   height: 30px;
-   /* width:30px; */
-   border: solid black; border-width: 1px;
-   border-radius: 5px;
-   padding: 14px 12px 4px;
-   margin: 10px;
- }
+
 
 /* .start-button button {
   width: 5em;
@@ -325,4 +352,138 @@ input {
 .modal-footer {
   margin: 2.5em;
 
+}
+
+@media (max-width: 780px) {
+  .navWide {
+    display: block;
+  }
+
+  .navNarrow {
+    display:none;
+  }
+
+  .App-title {
+    font-size: 1em;
+    margin-top: 35px;
+  }
+
+  nav a {
+    margin-left: 5px;
+    border-left: 1px solid #091D34;
+  }
+
+  .letter-tile {
+    display:inline-block;
+    /* height: 30px;
+    width:30px; */
+    border: solid black; border-width: 1px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 2px #ccc;
+    background-color: moccasin;
+    padding: 11px 12px 0px;
+    margin: 5px;
+    /* font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; */
+    font-family: 'Libre Baskerville', serif;
+  	font-size: 14px;
+  	font-weight: 500;
+  }
+
+  img.shuffle {
+    /* flex-grow: 1;
+    margin-left: 10px */
+    display: inline-block;
+    height: 22px;
+    width:30px;
+    border: solid black; border-width: 1px;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+  }
+}
+
+@media (max-width: 650px) {
+  .letter-tile {
+    display:none;
+    height: 10px;
+    width:10px;
+    border:none;
+    background-color: #F6FAFD;
+    border-bottom: 2px solid black;
+    padding: 11px 12px 0px;
+    margin: 5px;
+    /* font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; */
+    font-family: 'Libre Baskerville', serif;
+  	font-size: 14px;
+  	font-weight: 500;
+  }
+
+  .letter-underline {
+    display: block;
+    border-bottom: 2px solid black;
+    padding: 10px;
+    margin: 5px;
+    font-family: 'Libre Baskerville', serif;
+  	font-size: 16px;
+  }
+
+}
+
+@media (max-width: 535px) {
+  .letter-underline {
+    display: block;
+    border-bottom: 2px solid black;
+    padding: 10px;
+    margin: 2px;
+    font-family: 'Libre Baskerville', serif;
+  	font-size: 16px;
+  }
+
+  .App-title {
+    font-size: 1em;
+    margin-top: 0px;
+  }
+
+  nav a {
+    margin-left: 0px;
+    font-size: .75em;
+    border-left: none;
+  }
+
+}
+
+@media (max-width: 400px){
+  .letter-underline {
+    display: block;
+    border-bottom: 2px solid black;
+    padding: 10px;
+    margin: 1px;
+    font-family: 'Libre Baskerville', serif;
+  	font-size: 14px;
+  }
+
+  img.shuffle{
+    display:none;
+  }
+
+  img.small-shuffle{
+    display:block;
+    height: 22px;
+    width:30px;
+    border: solid black; border-width: 1px;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+  }
+}
+
+@media (max-height: 600px) {
+  .game-banner {
+    margin-bottom: 5vh;
+    border-bottom: none;
+  }
+
+  .clock, .score {
+    border:none;
+  }
 }
