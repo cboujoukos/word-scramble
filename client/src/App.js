@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 // import logo from './logo.svg';
 import Game from './containers/Game';
 import NavBar from './components/NavBar';
+import Rules from './components/Rules';
 import LeaderBoard from './containers/LeaderBoard';
 // import NewHighScore from './components/NewHighScore';
 import './App.css';
@@ -45,18 +46,6 @@ class App extends Component {
       )
     }
 
-    const rules = () => {
-      return (
-        <div className="container">
-          <div className="leader-board">
-            <h1>How to Play</h1>
-            <p>The object of the game is simple: unscramble as many words as you can!</p>
-            <p>Once you hit the start button you will have 30 seconds to unscramble each word. If you get stumped on a word, hit the shuffle icon to mix up those tiles. Use your shuffles wisely, though, you only get 10.</p>
-          </div>
-        </div>
-      )
-    }
-
     return (
       <Router>
         <div className="App">
@@ -67,7 +56,7 @@ class App extends Component {
           </header>
           <div className="main">
             <Route exact path="/" component={GamePage} />
-            <Route exact path="/rules" component={rules} />
+            <Route exact path="/rules" component={Rules} />
             <Route exact path="/high_scores" component={LeaderBoard} />
             {/*<Route exact path="/high_scores/new" component={NewHighScore} />*/}
             {/*<Game initialSeconds={30}/>*/}

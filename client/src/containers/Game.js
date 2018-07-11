@@ -132,9 +132,7 @@ class Game extends Component{
     this.setState({ status: 'completed', timeRemaining: 0 });
     if (this.state.score > this.props.highScores[this.props.highScores.length-1].score){
       this.toggleModal()
-      // this.props.history.push('/high_scores');
     }
-
   }
 
   submitHighScore = (event) => {
@@ -143,6 +141,7 @@ class Game extends Component{
     const score = document.getElementById('score').innerHTML
     this.props.onPostHighScore({high_score: {name: name, score: score}});
     this.toggleModal()
+    // this.props.history.push('/high_scores');
   }
 
   // shuffleWord = event => {
