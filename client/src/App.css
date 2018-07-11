@@ -52,9 +52,13 @@ footer {
   /* position:fixed; */
   bottom:0;;
   text-align:center;
-  background-color: #829FC0;
+  background-color: #091D34;
   border-top: 1px solid #091D34;
-  color: black;
+  color: #DEE5ED;
+}
+
+footer a {
+  color: #609CE1;
 }
 
 .leader-board {
