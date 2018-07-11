@@ -14,19 +14,21 @@ class LeaderBoard extends Component {
     <ScoreEntry key={entry.id} score={entry.score} name={entry.name} rank={i+1} />
   )
     return(
-      <div className="leader-board">
-        <h1>High Scores</h1>
+      <div className="container">
+        <div className="leader-board">
+          <h1>High Scores</h1>
 
-        <table className="score-table">
-          <tbody>
-            <tr>
-              <th className="rank">Rank</th>
-              <th className="score">Score</th>
-              <th className="player">Name</th>
-            </tr>
-          </tbody>
-          {renderHighScores}
-        </table>
+          <table className="score-table">
+            <tbody>
+              <tr>
+                <th className="rank">Rank</th>
+                <th className="score">Score</th>
+                <th className="player">Name</th>
+              </tr>
+            </tbody>
+            {renderHighScores}
+          </table>
+        </div>
       </div>
     )
   }

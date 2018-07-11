@@ -21,18 +21,35 @@ class NavBar extends Component{
 
     return(
       <nav>
-        <NavLink
-          exact to="/"
-          style={defaultStyle}
-          activeStyle={activeStyle}>play</NavLink>
-        <NavLink
-          exact to="/rules"
-          style={defaultStyle}
-          activeStyle={activeStyle}>rules</NavLink>
-        <NavLink
-          exact to="/high_scores"
-          style={defaultStyle}
-          activeStyle={activeStyle}>high scores</NavLink>
+        <div className="navWide">
+          <NavLink
+            exact to="/"
+            style={defaultStyle}
+            activeStyle={activeStyle}>play</NavLink>
+          <NavLink
+            exact to="/rules"
+            style={defaultStyle}
+            activeStyle={activeStyle}>rules</NavLink>
+          <NavLink
+            exact to="/high_scores"
+            style={defaultStyle}
+            activeStyle={activeStyle}>high scores</NavLink>
+          </div>
+          {/*<div className="navNarrow">
+            <i className="fa fa-bars fa-2x"></i>
+            <NavLink
+              exact to="/"
+              style={defaultStyle}
+              activeStyle={activeStyle}>play</NavLink>
+            <NavLink
+              exact to="/rules"
+              style={defaultStyle}
+              activeStyle={activeStyle}>rules</NavLink>
+            <NavLink
+              exact to="/high_scores"
+              style={defaultStyle}
+              activeStyle={activeStyle}>high scores</NavLink>
+          </div>*/}
       </nav>
     )
   }
