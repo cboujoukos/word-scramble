@@ -141,8 +141,8 @@ class Game extends Component{
     event.preventDefault();
     const name = document.getElementById('initials').value
     const score = document.getElementById('score').innerHTML
-    this.props.onPostHighScore({name: name, score: score})
-
+    this.props.onPostHighScore({high_score: {name: name, score: score}});
+    this.toggleModal()
   }
 
   // shuffleWord = event => {

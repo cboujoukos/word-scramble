@@ -55,8 +55,8 @@ export function postHighScore(entry){
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        score: entry.score,
-        name: entry.name
+        score: entry.high_score.score,
+        name: entry.high_score.name
       })
     })
   }
