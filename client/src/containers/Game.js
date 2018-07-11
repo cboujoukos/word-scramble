@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import fetch from 'isomorphic-fetch';
 import { connect } from 'react-redux';
-import { fetchWordList, fetchRandomWord, fetchAnagrams, fetchHighScores } from '../actions/gameActions'; //, startGame, endGame
+import { fetchWordList, fetchRandomWord, fetchAnagrams, fetchHighScores, postHighScore } from '../actions/gameActions'; //, startGame, endGame
 import TargetWord from './TargetWord';
 import Timer from '../components/Timer';
 import Modal from '../components/Modal';
@@ -139,7 +139,10 @@ class Game extends Component{
 
   submitHighScore = (event) => {
     event.preventDefault();
-    alert(document.getElementById('initials').value)
+    const name = document.getElementById('initials').value
+    const score = document.getElementById('score').innerHTML
+    this.props.onPostHighScore({name: name, score: score})
+
   }
 
   // shuffleWord = event => {
@@ -233,7 +236,8 @@ const mapDispatchToProps = dispatch => {
     onFetchWords: () => dispatch(fetchWordList()),
     onFetchRandomWord: (diff) => dispatch(fetchRandomWord(diff)),
     onFetchAnagrams: (word) => dispatch(fetchAnagrams(word)),
-    onFetchHighScores: () => dispatch(fetchHighScores())
+    onFetchHighScores: () => dispatch(fetchHighScores()),
+    onPostHighScore: (entry) => dispatch(postHighScore(entry)),
     // onStartGame: () => dispatch(startGame()),
     // onEndGame: () => dispatch(endGame())
   }

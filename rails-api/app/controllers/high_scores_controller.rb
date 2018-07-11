@@ -9,5 +9,13 @@ class HighScoresController < ApplicationController
     # render json: words.to_json
   end
 
+  def create
+    HighScore.create(score_params)
+  end
+
+  private
+  def score_params
+    params.require(:activity).permit(:name, :score)
+  end
 
 end

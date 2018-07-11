@@ -46,6 +46,23 @@ export function fetchAnagrams(word){
   }
 }
 
+export function postHighScore(entry){
+  return (dispatch) => {
+    return fetch(`/api/high_scores`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        score: entry.score,
+        name: entry.name
+      })
+    })
+  }
+
+}
+
 // I guess I really just want this to return True/False.. Should I move it pout of actions since it doesn't map to a reducer?
 export function validateWord(answer){
   const word = answer

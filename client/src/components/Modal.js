@@ -31,7 +31,7 @@ class Modal extends Component{
         <div className="modal">
           <button className="btn exit" onClick={this.props.onClose}>X</button>
           <h3>CONGRATULATIONS!</h3>
-          <p>New High Score: {this.props.score}</p>
+          <p>New High Score: <span id="score">{this.props.score}</span></p>
           <p>Enter your initials</p>
           <form>
             <input className="answer" id="initials" type="text" autoComplete="off" />
