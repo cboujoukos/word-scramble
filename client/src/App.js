@@ -58,8 +58,6 @@ class App extends Component {
             <Route exact path="/" component={GamePage} />
             <Route exact path="/rules" component={Rules} />
             <Route exact path="/high_scores" component={LeaderBoard} />
-            {/*<Route exact path="/high_scores/new" component={NewHighScore} />*/}
-            {/*<Game initialSeconds={30}/>*/}
           </div>
           <footer>
             <p>created by: chris boujoukos</p>
