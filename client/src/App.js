@@ -5,7 +5,6 @@ import Game from './containers/Game';
 import NavBar from './components/NavBar';
 import Rules from './components/Rules';
 import LeaderBoard from './containers/LeaderBoard';
-// import NewHighScore from './components/NewHighScore';
 import './App.css';
 
 class App extends Component {
@@ -51,7 +50,7 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             {/*<img src={logo} className="App-logo" alt="logo" />*/}
-            <h1 className="App-title"><span className="firstLetter">W</span>ord Scramble</h1>
+            <h1 className="App-title"><span className="firstLetter">W</span>ord <span className="firstLetter">S</span>cramble</h1>
             <NavBar />
           </header>
           <div className="main">
