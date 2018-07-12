@@ -49,11 +49,11 @@ class Game extends Component{
     // this.validAnswer(document.getElementById('answer').value)
     document.getElementById('answer').value = ''
   }
-
-  startInterval = () => {
-    this.startTimer();
-    this.startScore()
-  }
+  //
+  // startInterval = () => {
+  //   this.startTimer();
+  //   this.startScore()
+  // }
 
   startTimer = () => {
     this.intervalId = setInterval(() => {
@@ -71,23 +71,22 @@ class Game extends Component{
     }, 1000);
   }
 
-  startScore = () => {
-    this.scoreIntervalId = setInterval(() => {
-      this.setState((prevState) => {
-        const newScore = prevState.score + 1;
-        if (this.state.status === 'completed') {
-          clearInterval(this.scoreIntervalId);
-          return { status: 'completed', timeRemaining: 0 };
-        }
-        return { score: newScore };
-      });
-    }, 100);
-  }
+  // startScore = () => {
+  //   this.scoreIntervalId = setInterval(() => {
+  //     this.setState((prevState) => {
+  //       const newScore = prevState.score + 1;
+  //       if (this.state.status === 'completed') {
+  //         clearInterval(this.scoreIntervalId);
+  //         return { status: 'completed', timeRemaining: 0 };
+  //       }
+  //       return { score: newScore };
+  //     });
+  //   }, 100);
+  // }
 
 // PROBLEM : fetching anagrams takes roughly 8 seconds to complete. By this time player could have already entered a valid word and still losst.
   validateAnswer = (answer) => {
     // const corsAnywhere = 'https://cors-anywhere.herokuapp.com/'
-    // const OedApiUrl = 'https://od-api.oxforddictionaries.com/api/v1'
 
     // check if answer matches target word
     if (answer.toUpperCase() === this.props.targetWord) {

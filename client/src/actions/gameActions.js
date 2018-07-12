@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
 const corsAnywhere = 'https://cors-anywhere.herokuapp.com/'
-const OedApiUrl = 'https://od-api.oxforddictionaries.com/api/v1'
+// const OedApiUrl = 'https://od-api.oxforddictionaries.com/api/v1'
 const anagramUrl = `http://www.anagramica.com/all/`
 
 export function fetchWordList(){
@@ -59,25 +59,5 @@ export function postHighScore(entry){
         name: entry.high_score.name
       })
     })
-  }
-
-}
-
-// I guess I really just want this to return True/False.. Should I move it pout of actions since it doesn't map to a reducer?
-export function validateWord(answer){
-  const word = answer
-  return (dispatch) => {
-    dispatch({type: 'LOADING'});
-    return fetch(`${corsAnywhere}${OedApiUrl}/inflections/en/${word}`, {
-      // mode: "cors",
-      headers: {
-        // 'Access-Control-Allow-Origin': '*',
-        // 'Content-Type': 'multipart/form-data',
-        // "Accept": "application/json",
-        "app_id": `${process.env.REACT_APP_ID}`,
-        "app_key": `${process.env.REACT_APP_KEY}`
-      }
-    })
-    .then(rsp => rsp.status === 200 ? true : false)
   }
 }
