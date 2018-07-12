@@ -51,7 +51,7 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             {/*<img src={logo} className="App-logo" alt="logo" />*/}
-            <h1 className="App-title">Word Scramble</h1>
+            <h1 className="App-title"><span className="firstLetter">W</span>ord Scramble</h1>
             <NavBar />
           </header>
           <div className="main">
