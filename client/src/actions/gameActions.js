@@ -81,15 +81,3 @@ export function validateWord(answer){
     .then(rsp => rsp.status === 200 ? true : false)
   }
 }
-
-// export function startGame(){
-//   return (dispatch) => {
-//     dispatch({type: 'START_GAME'});
-//   }
-// }
-//
-// export function endGame(){
-//   return (dispatch) => {
-//     dispatch({type: 'END_GAME'});
-//   }
-// }

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import fetch from 'isomorphic-fetch';
 import { connect } from 'react-redux';
-import { fetchWordList, fetchRandomWord, fetchAnagrams, fetchHighScores, postHighScore } from '../actions/gameActions'; //, startGame, endGame
+import { fetchWordList, fetchRandomWord, fetchAnagrams, fetchHighScores, postHighScore } from '../actions/gameActions';
 import TargetWord from './TargetWord';
 import Timer from '../components/Timer';
 import Modal from '../components/Modal';
@@ -15,9 +14,7 @@ class Game extends Component{
     this.state = {
       status: 'new', //new, playing, completed
       timeRemaining: this.props.initialSeconds,
-      // countdownTimer: 3,
       score: 0,
-      // usedLetters: [],
       scrambles: 0,
       newScramble: '',
       gameRound: 0,
@@ -46,7 +43,6 @@ class Game extends Component{
 
   handleOnSubmit = (event) => {
     event.preventDefault();
-    console.log(document.getElementById('answer').value)
     // this.setState({status: 'completed'});
     clearInterval(this.intervalId)
     this.validateAnswer(document.getElementById('answer').value)
@@ -88,10 +84,10 @@ class Game extends Component{
     }, 100);
   }
 
-// MAJOR PROBLEM : fetching anagrams takes roughly 8 seconds to complete. By this time player could have already entered a valid word and still losst.
+// PROBLEM : fetching anagrams takes roughly 8 seconds to complete. By this time player could have already entered a valid word and still losst.
   validateAnswer = (answer) => {
-    const corsAnywhere = 'https://cors-anywhere.herokuapp.com/'
-    const OedApiUrl = 'https://od-api.oxforddictionaries.com/api/v1'
+    // const corsAnywhere = 'https://cors-anywhere.herokuapp.com/'
+    // const OedApiUrl = 'https://od-api.oxforddictionaries.com/api/v1'
 
     // check if answer matches target word
     if (answer.toUpperCase() === this.props.targetWord) {
@@ -233,7 +229,6 @@ const mapStateToProps = state => {
     scramble: state.game.scramble,
     anagrams: state.game.anagrams,
     highScores: state.game.highScores
-    // gameStatus: state.game.gameStatus
   }
 }
 
@@ -243,9 +238,7 @@ const mapDispatchToProps = dispatch => {
     onFetchRandomWord: (diff) => dispatch(fetchRandomWord(diff)),
     onFetchAnagrams: (word) => dispatch(fetchAnagrams(word)),
     onFetchHighScores: () => dispatch(fetchHighScores()),
-    onPostHighScore: (entry) => dispatch(postHighScore(entry)),
-    // onStartGame: () => dispatch(startGame()),
-    // onEndGame: () => dispatch(endGame())
+    onPostHighScore: (entry) => dispatch(postHighScore(entry))
   }
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Game))

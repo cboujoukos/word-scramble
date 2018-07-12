@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import shuffle from '../shuffle.png';
-// import { connect } from 'react-redux';
 import Letter from '../components/Letter';
 
 class TargetWord extends Component {
@@ -44,13 +43,4 @@ class TargetWord extends Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     targetWord: state.game.targetWord,
-//     scramble: state.game.scramble,
-//     // gameStatus: state.game.gameStatus
-//   }
-// }
-
-// export default connect(mapStateToProps)(TargetWord)
 export default TargetWord
