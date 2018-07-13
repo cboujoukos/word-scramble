@@ -21,3 +21,6 @@ Old file structure Procfile:
 
 
 FIX: Modal resizing.
+
+ADD STARTING HIGH SCORES TO PRODUCTION DB
+  - heroku run rails console
