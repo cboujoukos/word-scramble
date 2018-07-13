@@ -18,7 +18,7 @@ class Game extends Component{
       scrambles: 0,
       newScramble: '',
       gameRound: 0,
-      isOpen: true
+      isOpen: false
     }
   }
 
