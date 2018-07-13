@@ -536,6 +536,25 @@ input {
     background-color: #091D34;
     border-top: 1px solid #091D34;
     color: #DEE5ED;
-    font-size: .75em;
+    font-size: .6em;
+  }
+
+  table {
+    margin: 0 auto;
+    padding-bottom: 30vh;
+    margin-bottom: 5vh;
+    height: 50%;
+  }
+
+  table, th, td {
+    background-color:white;
+    width: 80vw;
+    font-size: .85em;
+    border: none;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 5px;
   }
 }
