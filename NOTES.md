@@ -3,13 +3,21 @@ Add ActiveAdmin?
 -- https://blog.heroku.com/a-rock-solid-modern-web-stack
 
 To run dev server from root dir:
-  foreman start -f Procfile.dev
+  [NOT WORKING] foreman start -f Procfile.dev
+  heroku local -f Procfile.dev
 
-to run dev server from inside rails-api dir:
-  ???
+
 
 
 How do I get around ththe CORS issue???
     --Failed to load https://od-api.oxforddictionaries.com/api/v1/inflections/en/: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:5000' is therefore not allowed access. The response had HTTP status code 403. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS
 
 ANAGRAMICA api
+
+
+Old file structure Procfile:
+    web: cd client && npm start -p 3000
+    api: cd rails-api && bundle exec rails s -p 3001
+
+
+FIX: Modal resizing.

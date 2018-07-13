@@ -10,7 +10,7 @@ import App from './App';
 // REMOVE THIS LINE IF SETTING UP ACTIVE ADMIN
 import registerServiceWorker from './registerServiceWorker';
 
-require('dotenv').config();
+// require('dotenv').config();
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

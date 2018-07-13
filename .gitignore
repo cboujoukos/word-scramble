@@ -13,6 +13,9 @@
 !/log/.keep
 !/tmp/.keep
 
+# Production
+/public
+
 .env
 
 .byebug_history

@@ -1,0 +1,31 @@
+{
+  "name": "rails-react-app",
+  "version": "1.0.0",
+  "description": "Word Scramble Game",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd client && npm install && npm run build && cd ..",
+    "deploy": "cp -a client/build/. public/",
+    "heroku-postbuild": "npm run build && npm run deploy && echo 'Client built!'" 
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cboujoukos/word-scramble.git"
+  },
+  "keywords": [
+    "word",
+    "scramble",
+    "game"
+  ],
+  "author": "Chris Boujoukos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cboujoukos/word-scramble/issues"
+  },
+  "homepage": "https://github.com/cboujoukos/word-scramble#readme"
+}
