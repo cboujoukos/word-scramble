@@ -21,7 +21,7 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  host: localhost
+  host: ''
   username: <%= ENV['DB_USERNAME'] %>
   password: <%= ENV['DB_PASSWORD'] %>
 
@@ -86,5 +86,5 @@ test:
 production:
   <<: *default
   database: rails-react-api_production
-  username: rails-react-api
-  password: <%= ENV['RAILS-REACT-API_DATABASE_PASSWORD'] %>
+  # username: rails-react-api
+  # password: <%= ENV['RAILS-REACT-API_DATABASE_PASSWORD'] %>
