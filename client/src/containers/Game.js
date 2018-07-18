@@ -108,13 +108,13 @@ class Game extends Component{
       bonus = 100
     } else if ((this.state.gameRound > 4) && this.state.gameRound < 10) {
       this.props.onFetchRandomWord('medium');
-      bonus = 250
+      bonus = 200
     } else if ((this.state.gameRound > 9) && this.state.gameRound < 15) {
       this.props.onFetchRandomWord('hard');
-      bonus = 750
+      bonus = 300
     } else {
       this.props.onFetchRandomWord('very_hard');
-      bonus = 2000
+      bonus = 500
     };
     this.setState((prevState) => {
       return { gameRound: prevState.gameRound + 1, timeRemaining: this.props.initialSeconds, newScramble: '', score: (prevState.score + prevState.timeRemaining*5 + bonus) }
