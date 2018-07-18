@@ -24,3 +24,5 @@ FIX: Modal resizing.
 
 ADD STARTING HIGH SCORES TO PRODUCTION DB
   - heroku run rails console
+
+  Add an updateHighScores reducer action rather than fetching high scores each time component mounts
