@@ -26,3 +26,6 @@ ADD STARTING HIGH SCORES TO PRODUCTION DB
   - heroku run rails console
 
   Add an updateHighScores reducer action rather than fetching high scores each time component mounts
+
+7/23/18
+  -add validation to high score ensuring at least 2 characters are entered
