@@ -19,7 +19,7 @@
   padding: 20px;
   color: #091D34;
   font-size: 1.5em;
-  font-family: 'Cabin Sketch', cursive;
+  font-family: 'Raleway', sans-serif;
   border-bottom: 2px solid #091D34;
 }
 
@@ -27,7 +27,23 @@
   font-size: 1.55em;
   /* font-style: italic; */
   /* font-family: 'Libre Franklin', sans-serif; */
-  padding-left: 2vw
+  /* padding-left: 2vw; */
+  padding: 2vw;
+}
+
+.title-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: 1px solid;
+  border-radius: 60px;
+  margin-left: 2vw;
+}
+
+.header-icon {
+  display: inline;
+  width: 9vw;
 }
 
 /* .firstLetter {

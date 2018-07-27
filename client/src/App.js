@@ -6,6 +6,7 @@ import NavBar from './components/NavBar';
 import Rules from './components/Rules';
 import LeaderBoard from './containers/LeaderBoard';
 import './App.css';
+import shuffle from './shuffle.png';
 
 class App extends Component {
 
@@ -50,7 +51,7 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             {/*<img src={logo} className="App-logo" alt="logo" />*/}
-            <h1 className="App-title"><span className="firstLetter">W</span>ord <span className="firstLetter">S</span>cramble</h1>
+            <div className="title-logo"><h1 className="App-title">unjumble</h1></div>
             <NavBar />
           </header>
           <div className="main">
