@@ -12,12 +12,13 @@ class Game extends Component{
     super(props);
 
     this.state = {
-      status: 'new', //new, playing, completed
+      status: 'new', //new, playing, completed, countdown
       timeRemaining: this.props.initialSeconds,
       score: 0,
       scrambles: 0,
       newScramble: '',
       gameRound: 0,
+      countdown: 3,
       isOpen: false
     }
   }
@@ -34,8 +35,8 @@ class Game extends Component{
     this.props.onFetchRandomWord('easy');
     document.getElementById('answer').focus();
     this.setState((prevState) => {
-      return { status: 'playing', gameRound: prevState.gameRound + 1 }
-    }, this.startTimer());
+      return { status: 'countdown', gameRound: prevState.gameRound + 1 }
+    }, this.startCountdown());
   }
 
   handleOnSubmit = (event) => {
@@ -52,11 +53,25 @@ class Game extends Component{
   //   this.startScore()
   // }
 
+  startCountdown = () => {
+    this.countdownIntervalId = setInterval(()=>{
+      this.setState((prevState) => {
+        const countdownTimer = prevState.countdown - 1;
+        if (countdownTimer === 0) {
+          clearInterval(this.countdownIntervalId);
+          this.startTimer();
+          return {status: 'playing'};
+        }
+        return { countdown: countdownTimer}
+      })
+    }, 1000)
+  }
+
   startTimer = () => {
     this.intervalId = setInterval(() => {
       this.setState((prevState) => {
         const newTimeRemaining = prevState.timeRemaining - 1;
-        if (newTimeRemaining === 0) {
+        if (newTimeRemaining < 1) {
           clearInterval(this.intervalId);
           if (this.state.score > this.props.highScores[this.props.highScores.length-1].score){
             this.toggleModal()
@@ -66,7 +81,9 @@ class Game extends Component{
         return { timeRemaining: newTimeRemaining };
       });
     }, 1000);
+
   }
+
 
   // startScore = () => {
   //   this.scoreIntervalId = setInterval(() => {
@@ -115,12 +132,14 @@ class Game extends Component{
     };
     this.setState((prevState) => {
       return {
+        status: 'countdown',
+        countdown: 3,
         gameRound: prevState.gameRound + 1,
         timeRemaining: this.props.initialSeconds,
         newScramble: '',
         score: (prevState.score + prevState.timeRemaining*5 + bonus)
       }
-    }, this.startTimer());
+    }, this.startCountdown());
   }
 
 
@@ -137,7 +156,7 @@ class Game extends Component{
     event.preventDefault();
     const $initials = document.getElementById('initials').value
     let name;
-    if ($initials == "") {
+    if ($initials === "") {
       name = "???"
     } else {
       name = $initials
@@ -186,6 +205,21 @@ class Game extends Component{
       );
       document.getElementById('answer').focus()
     };
+
+    if (document.getElementById('answer') !== null){
+      document.getElementById('answer').focus();
+    }
+
+
+    if (this.state.status === "countdown") {
+      return(
+        <div className="container">
+          <div className="game-board">
+            <h1>{this.state.countdown}</h1>
+          </div>
+        </div>
+      )
+    }
 
 
     return(
