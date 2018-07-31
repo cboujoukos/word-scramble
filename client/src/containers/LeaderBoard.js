@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchHighScores } from '../actions/gameActions';
 import ScoreEntry from '../components/ScoreEntry';
 
 class LeaderBoard extends Component {
-
-  componentDidMount(){
-    this.props.onFetchHighScores()
-  }
 
   render(){
     const renderHighScores = this.props.highScores.map((entry, i) =>
@@ -40,10 +35,5 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onFetchHighScores: () => dispatch(fetchHighScores())
-  }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(LeaderBoard)
+export default connect(mapStateToProps)(LeaderBoard)
