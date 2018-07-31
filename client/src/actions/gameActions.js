@@ -58,6 +58,6 @@ export function postHighScore(entry){
         score: entry.high_score.score,
         name: entry.high_score.name
       })
-    })
+    }).then(() => dispatch(fetchHighScores()))
   }
 }

@@ -1,43 +1,20 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 // import logo from './logo.svg';
 import Game from './containers/Game';
 import NavBar from './components/NavBar';
 import Rules from './components/Rules';
 import LeaderBoard from './containers/LeaderBoard';
+import { fetchHighScores } from './actions/gameActions';
 import './App.css';
 import shuffle from './shuffle.png';
 
 class App extends Component {
 
-  // TESTING CONNECTION TO API
-  // componentDidMount() {
-  //   window.fetch('api/words?difficulty=very_hard')
-  //     .then(rsp => rsp.json())
-  //     .then(json=> console.log(json))
-  //     .catch(error=> console.log(error));
-  //   window.fetch('api/words/10')
-  //     .then(rsp => rsp.json())
-  //     .then(json=> console.log(json))
-  //     .catch(error=> console.log(error))
-  // }
-
-  // TESTING FETCH FROM EXTERNAL API
-  // componentDidMount() {
-  //   window.fetch(` https://cors-anywhere.herokuapp.com/https://od-api.oxforddictionaries.com/api/v1/inflections/en/test`, {
-  //     headers: {
-  //       'Access-Control-Allow-Origin': '*',
-  //       'Content-Type': 'multipart/form-data',
-  //       "Accept": "application/json",
-  //       "app_id": `${process.env.REACT_APP_ID}`,
-  //       "app_key": `${process.env.REACT_APP_KEY}`
-  //     }
-  //   })
-  //   .then(rsp => {debugger});
-  //
-  //   window.fetch(`https://api.edamam.com/search?q=chicken`+`&app_id=c36af475`+`&app_key=db520ef743113e32c6a1ee7b5bd8ec9e`+`&to=100`)
-  // }
-
+  componentDidMount() {
+    this.props.onFetchHighScores()
+  }
 
   render() {
     const GamePage = () => {
@@ -50,8 +27,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="App-header">
-            {/*<img src={logo} className="App-logo" alt="logo" />*/}
-            <div className="title-logo"><h1 className="App-title">unjumble</h1></div>
+            <div className="title-logo"><h1 className="App-title">unjumbled</h1></div>
             <NavBar />
           </header>
           <div className="main">
@@ -69,4 +45,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    onFetchHighScores: () => dispatch(fetchHighScores())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App);

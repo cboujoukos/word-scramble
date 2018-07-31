@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchWordList, fetchRandomWord, fetchAnagrams, fetchHighScores, postHighScore } from '../actions/gameActions';
+import { fetchWordList, fetchRandomWord, fetchAnagrams, postHighScore } from '../actions/gameActions';
 import TargetWord from './TargetWord';
 import Timer from '../components/Timer';
 import Modal from '../components/Modal';
@@ -22,9 +22,6 @@ class Game extends Component{
     }
   }
 
-  componentDidMount() {
-    this.props.onFetchHighScores()
-  }
 
   toggleModal = () => {
     this.setState({
@@ -236,7 +233,6 @@ const mapDispatchToProps = dispatch => {
     onFetchWords: () => dispatch(fetchWordList()),
     onFetchRandomWord: (diff) => dispatch(fetchRandomWord(diff)),
     onFetchAnagrams: (word) => dispatch(fetchAnagrams(word)),
-    onFetchHighScores: () => dispatch(fetchHighScores()),
     onPostHighScore: (entry) => dispatch(postHighScore(entry))
   }
 }
