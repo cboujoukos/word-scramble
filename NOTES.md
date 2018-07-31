@@ -4,7 +4,9 @@ Add ActiveAdmin?
 
 To run dev server from root dir:
   [NOT WORKING] foreman start -f Procfile.dev
-  heroku local -f Procfile.dev
+  `heroku local -f Procfile.dev`
+  OR
+  `rake start`
 
 
 

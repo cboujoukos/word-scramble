@@ -135,7 +135,13 @@ class Game extends Component{
 
   submitHighScore = (event) => {
     event.preventDefault();
-    const name = document.getElementById('initials').value
+    const $initials = document.getElementById('initials').value
+    let name;
+    if ($initials == "") {
+      name = "???"
+    } else {
+      name = $initials
+    }
     const score = document.getElementById('score').innerHTML
     this.props.onPostHighScore({high_score: {name: name, score: score}});
     this.toggleModal()
