@@ -114,7 +114,12 @@ class Game extends Component{
       bonus = 500
     };
     this.setState((prevState) => {
-      return { gameRound: prevState.gameRound + 1, timeRemaining: this.props.initialSeconds, newScramble: '', score: (prevState.score + prevState.timeRemaining*5 + bonus) }
+      return {
+        gameRound: prevState.gameRound + 1,
+        timeRemaining: this.props.initialSeconds,
+        newScramble: '',
+        score: (prevState.score + prevState.timeRemaining*5 + bonus)
+      }
     }, this.startTimer());
   }
 
@@ -136,17 +141,6 @@ class Game extends Component{
     this.toggleModal()
     // this.props.history.push('/high_scores');
   }
-
-  // shuffleWord = event => {
-  //   event.preventDefault();
-  //   let newScramble =
-  //   this.props.scramble.split('')
-  //     .map(a => [Math.random(), a])
-  //     .sort((a, b) => a[0] - b[0])
-  //     .map(a => a[1])
-  //     .join('');
-  //     console.log(newScramble)
-  // };
 
 
   render(){

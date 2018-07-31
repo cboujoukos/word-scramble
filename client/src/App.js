@@ -27,7 +27,6 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="App-header">
-            {/*<img src={logo} className="App-logo" alt="logo" />*/}
             <div className="title-logo"><h1 className="App-title">unjumbled</h1></div>
             <NavBar />
           </header>
