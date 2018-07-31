@@ -20,11 +20,12 @@
   color: #091D34;
   font-size: 1.5em;
   font-family: 'Raleway', sans-serif;
+  /* font-family: 'Cormorant Garamond', serif; */
   border-bottom: 2px solid #091D34;
 }
 
 .App-title {
-  font-size: 1.55em;
+  font-size: 1.5em;
   /* font-style: italic; */
   /* font-family: 'Libre Franklin', sans-serif; */
   /* padding-left: 2vw; */
@@ -36,7 +37,7 @@
   justify-content: center;
   align-items: center;
   background-color: white;
-  border: 1px solid;
+  border: 3px solid;
   border-radius: 60px;
   margin-left: 2vw;
 }
@@ -361,9 +362,19 @@ input {
     display:none;
   }
 
-  .App-title {
+  /* .App-title {
     font-size: 1em;
     margin-top: 35px;
+  } */
+
+  .title-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: inherit;
+    border: none;
+
+    margin-left: 2vw;
   }
 
   nav a {
