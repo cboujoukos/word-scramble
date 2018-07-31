@@ -215,7 +215,7 @@ class Game extends Component{
       return(
         <div className="container">
           <div className="game-board">
-            <h1>{this.state.countdown}</h1>
+            <h1 className="countdown">{this.state.countdown}</h1>
           </div>
         </div>
       )
