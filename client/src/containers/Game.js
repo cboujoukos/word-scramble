@@ -175,7 +175,7 @@ class Game extends Component{
 
     if (this.state.status === 'new') {
       button = <button className="btn default" onClick={(event) => this.handleOnStart(event)}>Start</button>;
-      tiles = 'SCRAMBLE'
+      tiles = 'JUMBLE'
     } else if (this.state.status === 'playing') {
       button = <button className="btn default" onClick={(event) => this.handleOnSubmit(event)}>Submit</button>;
       // tiles = this.props.scramble

@@ -8,6 +8,14 @@ class LeaderBoard extends Component {
     const renderHighScores = this.props.highScores.map((entry, i) =>
     <ScoreEntry key={entry.id} score={entry.score} name={entry.name} rank={i+1} votes={0} />
   )
+
+    if (this.props.highScores.length === 0) {
+      return(
+        <div className="container score-container">
+          <h2>Loading high scores...</h2>
+        </div>
+      )
+    }
     return(
       <div className="container score-container">
         <div className="leader-board">
