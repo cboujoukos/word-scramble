@@ -496,6 +496,7 @@ input {
   }
 
   nav a {
+    margin-bottom: 10px;
     margin-left: 0px;
     font-size: .75em;
     border-left: none;
@@ -504,9 +505,13 @@ input {
 }
 
 @media (max-width: 460px) {
-  .App-title {
+  /* .App-title {
     font-size: 1em;
     margin-top: 0px;
+  } */
+
+  nav a {
+    margin-bottom:0px;
   }
 
   .modal {
