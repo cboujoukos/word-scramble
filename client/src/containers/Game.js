@@ -52,6 +52,7 @@ class Game extends Component{
   //   this.startScore()
   // }
 
+
   startTimer = () => {
     this.intervalId = setInterval(() => {
       this.setState((prevState) => {
@@ -120,7 +121,8 @@ class Game extends Component{
         newScramble: '',
         score: (prevState.score + prevState.timeRemaining*5 + bonus)
       }
-    }, this.startTimer());
+    }, () => {this.startTimer(); document.getElementById('answer').focus();}
+    );
   }
 
 
