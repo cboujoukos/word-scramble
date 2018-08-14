@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ScoreEntry = ({score, name, rank, votes}) => {
+const ScoreEntry = ({score, name, rank}) => {
 
   return (
     <tbody>
@@ -8,7 +8,7 @@ const ScoreEntry = ({score, name, rank, votes}) => {
         <td className="rank">{rank}.</td>
         <td className="score">{score}</td>
         <td className="player">{name}</td>
-        
+
       </tr>
     </tbody>
   )
